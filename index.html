@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cs2boost - Kingsman Elegance</title>
+    <title>Cs2boost - Kingsman Grandeur</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Lora:wght@400;600&display=swap" rel="stylesheet">
     <style>
         /* Reset and base styles */
@@ -54,7 +54,7 @@
         }
 
         /* Animated Background */
-        #wave-bg {
+        #rain-bg {
             position: fixed;
             top: 0;
             left: 0;
@@ -68,8 +68,9 @@
         header {
             background: var(--black);
             padding: 1.5rem 2rem;
-            position: sticky;
+            position: fixed;
             top: 0;
+            width: 100%;
             z-index: 100;
             border-bottom: 1px solid var(--gold);
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
@@ -84,7 +85,7 @@
         }
 
         .logo {
-            font-size: 2.2rem;
+            font-size: 2rem;
             font-weight: 700;
             color: var(--gold);
             text-decoration: none;
@@ -144,11 +145,27 @@
             font-weight: 600;
             position: relative;
             overflow: hidden;
-            transition: background 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .nav-cta:hover {
-            background: var(--dark-gold);
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+        }
+
+        .nav-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.3), transparent);
+            transition: left 0.4s ease;
+        }
+
+        .nav-cta:hover::before {
+            left: 100%;
         }
 
         .sparkles {
@@ -168,10 +185,10 @@
             background: radial-gradient(circle, rgba(212, 175, 55, 0.9) 30%, rgba(212, 175, 55, 0) 70%);
             border-radius: 50%;
             opacity: 0;
-            animation: uniformTwinkle 3s ease-in-out infinite;
+            animation: sparkleWave 2.5s ease-in-out infinite;
         }
 
-        @keyframes uniformTwinkle {
+        @keyframes sparkleWave {
             0% { opacity: 0; transform: scale(0.8); }
             50% { opacity: 1; transform: scale(1.2); box-shadow: 0 0 8px rgba(212, 175, 55, 0.8); }
             100% { opacity: 0; transform: scale(0.8); }
@@ -180,24 +197,24 @@
         /* Hero Section */
         .hero {
             max-width: 1200px;
-            margin: 3rem auto;
+            margin: 6rem auto 3rem;
             text-align: center;
-            padding: 6rem 2rem;
-            background: rgba(0, 0, 0, 0.8);
+            padding: 5rem 2rem;
+            background: rgba(0, 0, 0, 0.85);
             border-radius: 0.5rem;
             position: relative;
             z-index: 1;
         }
 
         .hero h1 {
-            font-size: 4rem;
+            font-size: 3.5rem;
             color: var(--white);
             margin-bottom: 1rem;
             text-shadow: 0 2px 5px rgba(212, 175, 55, 0.3);
         }
 
         .hero p {
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             color: var(--white);
             max-width: 600px;
             margin: 0 auto 2rem;
@@ -214,21 +231,37 @@
             font-size: 1.2rem;
             position: relative;
             overflow: hidden;
-            transition: background 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .hero-cta:hover {
-            background: var(--dark-gold);
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
         }
 
-        /* Features Section */
-        .features {
+        .hero-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.3), transparent);
+            transition: left 0.4s ease;
+        }
+
+        .hero-cta:hover::before {
+            left: 100%;
+        }
+
+        /* Why Section */
+        .why {
             max-width: 1200px;
             margin: 4rem auto;
             padding: 0 2rem;
         }
 
-        .features h2 {
+        .why h2 {
             font-size: 3rem;
             color: var(--gold);
             text-align: center;
@@ -236,7 +269,7 @@
             position: relative;
         }
 
-        .features h2::after {
+        .why h2::after {
             content: '';
             position: absolute;
             bottom: -5px;
@@ -247,33 +280,52 @@
             background: var(--gold);
         }
 
-        .features-grid {
+        .why-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
         }
 
-        .feature-card {
-            background: rgba(0, 0, 0, 0.8);
+        .why-card {
+            background: rgba(0, 0, 0, 0.9);
             padding: 2rem;
             border-radius: 0.5rem;
             text-align: center;
-            border: 1px solid var(--gold);
+            border: 2px solid var(--gold);
+            position: relative;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+        .why-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            border-radius: 0.5rem;
+            background: linear-gradient(45deg, var(--gold), var(--dark-gold));
+            z-index: -1;
+            opacity: 0.3;
+            transition: opacity 0.3s ease;
         }
 
-        .feature-card h3 {
-            font-size: 1.8rem;
+        .why-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4);
+        }
+
+        .why-card:hover::before {
+            opacity: 0.5;
+        }
+
+        .why-card h3 {
+            font-size: 1.6rem;
             color: var(--gold);
             margin-bottom: 1rem;
         }
 
-        .feature-card p {
+        .why-card p {
             font-size: 1.1rem;
             color: var(--white);
         }
@@ -293,7 +345,7 @@
             max-width: 1200px;
             margin: 4rem auto;
             padding: 3rem 2rem;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.85);
             border-radius: 0.5rem;
             position: relative;
             z-index: 1;
@@ -372,7 +424,7 @@
             max-width: 1200px;
             margin: 4rem auto;
             padding: 4rem 2rem;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.85);
             border-radius: 0.5rem;
             text-align: center;
             position: relative;
@@ -403,11 +455,27 @@
             font-size: 1.2rem;
             position: relative;
             overflow: hidden;
-            transition: background 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .cta-button:hover {
-            background: var(--dark-gold);
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.3), transparent);
+            transition: left 0.4s ease;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
         }
 
         /* Footer */
@@ -514,22 +582,23 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .hero, .features, .stats, .cta-section, .feature-card, .stat-item {
+        .hero, .why, .stats, .cta-section, .why-card, .stat-item {
             animation: fadeIn 0.8s ease-out;
         }
 
         /* Responsive Design */
         @media (max-width: 1024px) {
             .hero h1 { font-size: 3rem; }
-            .features h2, .cta-section h2, .stats h2 { font-size: 2.5rem; }
-            .features-grid { grid-template-columns: 1fr; }
+            .why h2, .cta-section h2, .stats h2 { font-size: 2.5rem; }
+            .why-grid { grid-template-columns: 1fr 1fr; }
             .stats-container { grid-template-columns: 1fr 1fr; }
         }
 
         @media (max-width: 768px) {
             nav ul { gap: 1rem; }
-            .hero { padding: 4rem 1.5rem; }
+            .hero { padding: 4rem 1.5rem; margin-top: 5rem; }
             .hero h1 { font-size: 2.5rem; }
+            .why-grid { grid-template-columns: 1fr; }
             .stats-container { grid-template-columns: 1fr; }
             .footer-content { grid-template-columns: 1fr; }
             .sparkle { width: 2px; height: 2px; }
@@ -538,8 +607,37 @@
         @media (max-width: 480px) {
             .hero h1 { font-size: 2rem; }
             .hero-cta, .cta-button, .nav-cta { padding: 0.6rem 1.2rem; font-size: 1rem; }
-            nav ul { display: none; } /* Consider adding hamburger menu */
+            nav ul { display: none; }
             .sparkle { width: 1.5px; height: 1.5px; }
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            font-size: 1.5rem;
+            color: var(--gold);
+            background: none;
+            border: none;
+            cursor: pointer;
+            z-index: 101;
+        }
+
+        @media (max-width: 480px) {
+            .hamburger { display: block; }
+            nav ul.active {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background: var(--black);
+                padding: 1rem;
+                border-top: 1px solid var(--gold);
+            }
+            nav ul.active li {
+                margin: 0.5rem 0;
+            }
         }
     </style>
 </head>
@@ -548,11 +646,12 @@
     <header>
         <nav>
             <a href="https://allgameg87.github.io/Cs2boost/" class="logo">Cs2boost</a>
-            <ul>
-                <li><a href="#features">Особенности</a></li>
+            <ul id="nav-menu">
+                <li><a href="#why">Особенности</a></li>
                 <li><a href="#stats">Статистика</a></li>
                 <li><a href="https://allgameg87.github.io/Cs2boost_price/">Прайс</a></li>
             </ul>
+            <button class="hamburger">☰</button>
             <a href="https://funpay.com/lots/offer?id=39385134" class="nav-cta">
                 Get Started
                 <div class="sparkles"></div>
@@ -562,7 +661,7 @@
 
     <!-- Hero Section -->
     <section class="hero">
-        <h1>Играй с изяществом</h1>
+        <h1>Играй с величием</h1>
         <p>Достигай вершин с элитным триггер-ботом.</p>
         <a href="https://funpay.com/lots/offer?id=39384867" class="hero-cta">
             Начать сейчас
@@ -570,25 +669,25 @@
         </a>
     </section>
 
-    <!-- Features Section -->
-    <section class="features" id="features">
-        <h2>Почему Cs2boost?</h2>
-        <div class="features-grid">
-            <div class="feature-card">
-                <h3>Искры Гениальности</h3>
-                <p>Гибкие настройки для идеального игрового опыта.</p>
+    <!-- Why Section -->
+    <section class="why" id="why">
+        <h2>Почему выбирают Cs2boost?</h2>
+        <div class="why-grid">
+            <div class="why-card">
+                <h3>Мастерство настройки</h3>
+                <p>Изысканные параметры для совершенного игрового опыта.</p>
             </div>
-            <div class="feature-card">
-                <h3>Элегантная Поддержка</h3>
-                <p>Связь 24/7 через <a href="https://t.me/cs2boostTrigger" class="support-link">Telegram</a>.</p>
+            <div class="why-card">
+                <h3>Исключительная поддержка</h3>
+                <p>Круглосуточная связь через <a href="https://t.me/cs2boostTrigger" class="support-link">Telegram</a>.</p>
             </div>
-            <div class="feature-card">
-                <h3>Изящный Код</h3>
-                <p>Уникальные библиотеки для обхода античита.</p>
+            <div class="why-card">
+                <h3>Искры мастерства</h3>
+                <p>Уникальный код, обходящий античит с безупречной точностью.</p>
             </div>
-            <div class="feature-card">
-                <h3>Искусство Обновлений</h3>
-                <p>Регулярные улучшения под новые версии игры.</p>
+            <div class="why-card">
+                <h3>Эволюция совершенства</h3>
+                <p>Постоянные обновления для актуальности и надежности.</p>
             </div>
         </div>
     </section>
@@ -622,8 +721,8 @@
 
     <!-- CTA Section -->
     <section class="cta-section">
-        <h2>Готов к величию?</h2>
-        <p>Присоединяйся к элите игроков.</p>
+        <h2>Стань частью элиты</h2>
+        <p>Присоединяйся к тем, кто выбирает совершенство.</p>
         <a href="https://funpay.com/lots/offer?id=39385054" class="cta-button">
             Вступить сейчас
             <div class="sparkles"></div>
@@ -635,7 +734,7 @@
         <div class="footer-content">
             <div class="footer-column">
                 <h3>Cs2boost</h3>
-                <p>Элитный триггер-бот, созданный мастерами для тех, кто стремится к совершенству.</p>
+                <p>Элитный триггер-бот, созданный мастерами для тех, кто стремится к величию.</p>
                 <div class="social-links">
                     <a href="https://t.me/cs2boostSapport"><img src="https://img.icons8.com/?size=100&id=114954&format=png&color=000000" alt="Telegram"></a>
                 </div>
@@ -643,7 +742,7 @@
             <div class="footer-column">
                 <h3>Ссылки</h3>
                 <ul>
-                    <li><a href="#features">Особенности</a></li>
+                    <li><a href="#why">Особенности</a></li>
                     <li><a href="#stats">Статистика</a></li>
                     <li><a href="https://allgameg87.github.io/Cs2boost_price/">Прайс</a></li>
                 </ul>
@@ -657,8 +756,8 @@
     <!-- Back to Top Button -->
     <a href="#" class="back-to-top">↑</a>
 
-    <!-- Wave Background Canvas -->
-    <canvas id="wave-bg"></canvas>
+    <!-- Rain Background Canvas -->
+    <canvas id="rain-bg"></canvas>
 
     <script>
         // Sparkles for Buttons
@@ -689,48 +788,65 @@
             }
         });
 
-        // Animated Wave Background
-        const canvas = document.getElementById('wave-bg');
+        // Animated Rain Background
+        const canvas = document.getElementById('rain-bg');
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
 
-        let time = 0;
-        const waves = [
-            { amplitude: 30, frequency: 0.01, speed: 0.05, offset: 0 },
-            { amplitude: 20, frequency: 0.015, speed: 0.03, offset: Math.PI / 2 },
-        ];
+        const drops = [];
+        const dropCount = window.innerWidth > 768 ? 100 : 50;
 
-        function drawWaves() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = 'rgba(0, 0, 0, 0.2)';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
+        class Drop {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.length = Math.random() * 10 + 5;
+                this.speed = Math.random() * 2 + 1;
+                this.opacity = Math.random() * 0.3 + 0.1;
+            }
 
-            waves.forEach(wave => {
-                ctx.beginPath();
-                ctx.moveTo(0, canvas.height / 2);
-                for (let x = 0; x < canvas.width; x++) {
-                    const y = canvas.height / 2 + Math.sin(x * wave.frequency + time * wave.speed + wave.offset) * wave.amplitude;
-                    ctx.lineTo(x, y);
+            update() {
+                this.y += this.speed;
+                if (this.y > canvas.height) {
+                    this.y = -this.length;
+                    this.x = Math.random() * canvas.width;
                 }
-                ctx.strokeStyle = `rgba(212, 175, 55, ${0.3})`;
-                ctx.lineWidth = 2;
-                ctx.stroke();
-            });
+            }
 
-            time += 0.05;
-            requestAnimationFrame(drawWaves);
+            draw() {
+                ctx.beginPath();
+                ctx.moveTo(this.x, this.y);
+                ctx.lineTo(this.x, this.y + this.length);
+                ctx.strokeStyle = `rgba(212, 175, 55, ${this.opacity})`;
+                ctx.lineWidth = 1;
+                ctx.stroke();
+            }
         }
 
-        drawWaves();
+        function initDrops() {
+            for (let i = 0; i < dropCount; i++) {
+                drops.push(new Drop());
+            }
+        }
 
-        // Parallax Effect for Waves
+        function animateDrops() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            drops.forEach(drop => {
+                drop.update();
+                drop.draw();
+            });
+            requestAnimationFrame(animateDrops);
+        }
+
+        initDrops();
+        animateDrops();
+
+        // Parallax Effect for Drops
         document.addEventListener('mousemove', (e) => {
             const moveX = (e.clientX / window.innerWidth - 0.5) * 10;
-            const moveY = (e.clientY / window.innerHeight - 0.5) * 10;
-            waves.forEach(wave => {
-                wave.offset += moveX * 0.001;
-                wave.amplitude = 30 + moveY * 0.2;
+            drops.forEach(drop => {
+                drop.x += moveX * 0.02;
             });
         });
 
@@ -738,16 +854,21 @@
         document.addEventListener('touchmove', (e) => {
             const touch = e.touches[0];
             const moveX = (touch.clientX / window.innerWidth - 0.5) * 10;
-            const moveY = (touch.clientY / window.innerHeight - 0.5) * 10;
-            waves.forEach(wave => {
-                wave.offset += moveX * 0.001;
-                wave.amplitude = 30 + moveY * 0.2;
+            drops.forEach(drop => {
+                drop.x += moveX * 0.02;
             });
         });
 
         window.addEventListener('resize', () => {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
+        });
+
+        // Hamburger Menu Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('#nav-menu');
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
         });
 
         // Back to Top Button
