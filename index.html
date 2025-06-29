@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cs2boost - Kingsman Grandeur</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Cormorant+Garamond:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Lora:wght@400;600&display=swap" rel="stylesheet">
     <style>
         /* Reset and base styles */
         * {
@@ -22,7 +22,7 @@
         }
 
         body {
-            font-family: 'Cormorant Garamond', serif;
+            font-family: 'Lora', serif;
             line-height: 1.6;
             color: var(--white);
             background: linear-gradient(180deg, var(--black), var(--dark-gray));
@@ -32,7 +32,7 @@
         }
 
         h1, h2, h3 {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Cinzel Decorative', serif;
         }
 
         /* Custom Scrollbar */
@@ -54,7 +54,7 @@
         }
 
         /* Animated Background */
-        #shine-bg {
+        #rain-bg {
             position: fixed;
             top: 0;
             left: 0;
@@ -66,7 +66,7 @@
 
         /* Header */
         header {
-            background: rgba(0, 0, 0, 0.7);
+            background: var(--black);
             padding: 1.5rem 2rem;
             position: fixed;
             top: 0;
@@ -111,7 +111,7 @@
         nav ul li a {
             color: var(--white);
             text-decoration: none;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 600;
             transition: color 0.3s ease;
             position: relative;
@@ -200,11 +200,10 @@
             margin: 6rem auto 3rem;
             text-align: center;
             padding: 5rem 2rem;
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0.85);
             border-radius: 0.5rem;
             position: relative;
             z-index: 1;
-            border: 1px solid var(--gold);
         }
 
         .hero h1 {
@@ -260,11 +259,6 @@
             max-width: 1200px;
             margin: 4rem auto;
             padding: 0 2rem;
-            background: rgba(0, 0, 0, 0.7);
-            border-radius: 0.5rem;
-            border: 1px solid var(--gold);
-            position: relative;
-            z-index: 1;
         }
 
         .why h2 {
@@ -290,11 +284,10 @@
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
-            padding: 2rem;
         }
 
         .why-card {
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0.9);
             padding: 2rem;
             border-radius: 0.5rem;
             text-align: center;
@@ -352,9 +345,8 @@
             max-width: 1200px;
             margin: 4rem auto;
             padding: 3rem 2rem;
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0.85);
             border-radius: 0.5rem;
-            border: 1px solid var(--gold);
             position: relative;
             z-index: 1;
         }
@@ -386,7 +378,7 @@
         }
 
         .stat-item {
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0.9);
             padding: 2rem;
             border-radius: 0.5rem;
             border: 2px solid var(--gold);
@@ -432,9 +424,8 @@
             max-width: 1200px;
             margin: 4rem auto;
             padding: 4rem 2rem;
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0.85);
             border-radius: 0.5rem;
-            border: 1px solid var(--gold);
             text-align: center;
             position: relative;
             z-index: 1;
@@ -489,7 +480,7 @@
 
         /* Footer */
         footer {
-            background: rgba(0, 0, 0, 0.7);
+            background: var(--black);
             padding: 3rem 2rem;
             border-top: 1px solid var(--gold);
             position: relative;
@@ -640,7 +631,7 @@
                 top: 60px;
                 left: 0;
                 width: 100%;
-                background: rgba(0, 0, 0, 0.7);
+                background: var(--black);
                 padding: 1rem;
                 border-top: 1px solid var(--gold);
             }
@@ -765,8 +756,8 @@
     <!-- Back to Top Button -->
     <a href="#" class="back-to-top">↑</a>
 
-    <!-- Shine Background Canvas -->
-    <canvas id="shine-bg"></canvas>
+    <!-- Rain Background Canvas -->
+    <canvas id="rain-bg"></canvas>
 
     <script>
         // Sparkles for Buttons
@@ -797,57 +788,75 @@
             }
         });
 
-        // Animated Shine Background
-        const canvas = document.getElementById('shine-bg');
+        // Animated Rain Background
+        const canvas = document.getElementById('rain-bg');
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
 
-        let time = 0;
-        const rays = 12;
-        const rayLength = Math.max(canvas.width, canvas.height) * 1.5;
+        const drops = [];
+        const dropCount = window.innerWidth > 768 ? 100 : 50;
 
-        function drawShine() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = 'rgba(0, 0, 0, 0.2)';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-            const centerX = canvas.width / 2;
-            const centerY = canvas.height / 2;
-
-            for (let i = 0; i < rays; i++) {
-                const angle = (i / rays) * 2 * Math.PI + time * 0.05;
-                const opacity = 0.2 + Math.sin(time * 0.1 + i) * 0.1;
-                ctx.beginPath();
-                ctx.moveTo(centerX, centerY);
-                ctx.lineTo(
-                    centerX + Math.cos(angle) * rayLength,
-                    centerY + Math.sin(angle) * rayLength
-                );
-                ctx.strokeStyle = `rgba(212, 175, 55, ${opacity})`;
-                ctx.lineWidth = 2;
-                ctx.stroke();
+        class Drop {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.length = Math.random() * 10 + 5;
+                this.speed = Math.random() * 2 + 1;
+                this.opacity = Math.random() * 0.3 + 0.1;
             }
 
-            time += 0.05;
-            requestAnimationFrame(drawShine);
+            update() {
+                this.y += this.speed;
+                if (this.y > canvas.height) {
+                    this.y = -this.length;
+                    this.x = Math.random() * canvas.width;
+                }
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.moveTo(this.x, this.y);
+                ctx.lineTo(this.x, this.y + this.length);
+                ctx.strokeStyle = `rgba(212, 175, 55, ${this.opacity})`;
+                ctx.lineWidth = 1;
+                ctx.stroke();
+            }
         }
 
-        drawShine();
+        function initDrops() {
+            for (let i = 0; i < dropCount; i++) {
+                drops.push(new Drop());
+            }
+        }
 
-        // Parallax Effect for Rays
+        function animateDrops() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            drops.forEach(drop => {
+                drop.update();
+                drop.draw();
+            });
+            requestAnimationFrame(animateDrops);
+        }
+
+        initDrops();
+        animateDrops();
+
+        // Parallax Effect for Drops
         document.addEventListener('mousemove', (e) => {
-            const moveX = (e.clientX / window.innerWidth - 0.5) * 20;
-            const moveY = (e.clientY / window.innerHeight - 0.5) * 20;
-            canvas.style.transform = `translate(${moveX}px, ${moveY}px)`;
+            const moveX = (e.clientX / window.innerWidth - 0.5) * 10;
+            drops.forEach(drop => {
+                drop.x += moveX * 0.02;
+            });
         });
 
         // Touch Support for Mobile
         document.addEventListener('touchmove', (e) => {
             const touch = e.touches[0];
-            const moveX = (touch.clientX / window.innerWidth - 0.5) * 20;
-            const moveY = (touch.clientY / window.innerHeight - 0.5) * 20;
-            canvas.style.transform = `translate(${moveX}px, ${moveY}px)`;
+            const moveX = (touch.clientX / window.innerWidth - 0.5) * 10;
+            drops.forEach(drop => {
+                drop.x += moveX * 0.02;
+            });
         });
 
         window.addEventListener('resize', () => {
