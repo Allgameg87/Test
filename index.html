@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cs2boost - Kingsman Edition</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <title>Cs2boost - Kingsman Elegance</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Lora:wght@400;600&display=swap" rel="stylesheet">
     <style>
         /* Reset and base styles */
         * {
@@ -22,16 +22,17 @@
         }
 
         body {
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Lora', serif;
             line-height: 1.6;
             color: var(--white);
             background: linear-gradient(180deg, var(--black), var(--dark-gray));
             overflow-x: hidden;
             scroll-behavior: smooth;
+            position: relative;
         }
 
         h1, h2, h3 {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Cinzel Decorative', serif;
         }
 
         /* Custom Scrollbar */
@@ -52,6 +53,17 @@
             background: var(--dark-gold);
         }
 
+        /* Animated Background */
+        #particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
         /* Header */
         header {
             background: var(--black);
@@ -60,6 +72,7 @@
             top: 0;
             z-index: 100;
             border-bottom: 1px solid var(--gold);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
         }
 
         nav {
@@ -71,10 +84,21 @@
         }
 
         .logo {
-            font-size: 2rem;
+            font-size: 2.2rem;
             font-weight: 700;
             color: var(--gold);
             text-decoration: none;
+            position: relative;
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 50%;
+            height: 2px;
+            background: var(--gold);
         }
 
         nav ul {
@@ -86,9 +110,25 @@
         nav ul li a {
             color: var(--white);
             text-decoration: none;
-            font-size: 1rem;
+            font-size: 1.1rem;
             font-weight: 600;
             transition: color 0.3s ease;
+            position: relative;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
         }
 
         nav ul li a:hover {
@@ -102,6 +142,8 @@
             border-radius: 0.3rem;
             text-decoration: none;
             font-weight: 600;
+            position: relative;
+            overflow: hidden;
             transition: background 0.3s ease;
         }
 
@@ -109,24 +151,53 @@
             background: var(--dark-gold);
         }
 
+        .sparkles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.9) 30%, rgba(212, 175, 55, 0) 70%);
+            border-radius: 50%;
+            opacity: 0;
+            animation: uniformTwinkle 3s ease-in-out infinite;
+        }
+
+        @keyframes uniformTwinkle {
+            0% { opacity: 0; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); box-shadow: 0 0 10px rgba(212, 175, 55, 0.8); }
+            100% { opacity: 0; transform: scale(0.8); }
+        }
+
         /* Hero Section */
         .hero {
             max-width: 1200px;
             margin: 3rem auto;
             text-align: center;
-            padding: 5rem 2rem;
-            background: rgba(0, 0, 0, 0.7);
+            padding: 6rem 2rem;
+            background: rgba(0, 0, 0, 0.8);
             border-radius: 0.5rem;
+            position: relative;
+            z-index: 1;
         }
 
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: 4rem;
             color: var(--white);
             margin-bottom: 1rem;
+            text-shadow: 0 2px 5px rgba(212, 175, 55, 0.3);
         }
 
         .hero p {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             color: var(--white);
             max-width: 600px;
             margin: 0 auto 2rem;
@@ -140,7 +211,9 @@
             border-radius: 0.3rem;
             text-decoration: none;
             font-weight: 600;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
+            position: relative;
+            overflow: hidden;
             transition: background 0.3s ease;
         }
 
@@ -156,10 +229,22 @@
         }
 
         .features h2 {
-            font-size: 2.5rem;
+            font-size: 3rem;
             color: var(--gold);
             text-align: center;
             margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .features h2::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 2px;
+            background: var(--gold);
         }
 
         .features-grid {
@@ -169,21 +254,26 @@
         }
 
         .feature-card {
-            background: rgba(0, 0, 0, 0.7);
-            padding: 1.5rem;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 2rem;
             border-radius: 0.5rem;
             text-align: center;
             border: 1px solid var(--gold);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
         }
 
         .feature-card h3 {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             color: var(--gold);
             margin-bottom: 1rem;
         }
 
         .feature-card p {
-            font-size: 1rem;
+            font-size: 1.1rem;
             color: var(--white);
         }
 
@@ -201,8 +291,8 @@
         .stats {
             max-width: 1200px;
             margin: 4rem auto;
-            padding: 2rem;
-            background: rgba(0, 0, 0, 0.7);
+            padding: 3rem 2rem;
+            background: rgba(0, 0, 0, 0.8);
             border-radius: 0.5rem;
         }
 
@@ -219,37 +309,44 @@
         }
 
         .stat-number {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             color: var(--gold);
             margin-bottom: 0.5rem;
+            opacity: 0;
+            animation: countUp 2s ease-out forwards;
         }
 
         .stat-label {
-            font-size: 1rem;
+            font-size: 1.1rem;
             color: var(--white);
+        }
+
+        @keyframes countUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* CTA Section */
         .cta-section {
             max-width: 1200px;
             margin: 4rem auto;
-            padding: 3rem 2rem;
-            background: rgba(0, 0, 0, 0.7);
+            padding: 4rem 2rem;
+            background: rgba(0, 0, 0, 0.8);
             border-radius: 0.5rem;
             text-align: center;
         }
 
         .cta-section h2 {
-            font-size: 2.5rem;
+            font-size: 3rem;
             color: var(--gold);
             margin-bottom: 1rem;
         }
 
         .cta-section p {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             color: var(--white);
             max-width: 600px;
-            margin: 0 auto 1.5rem;
+            margin: 0 auto 2rem;
         }
 
         .cta-button {
@@ -260,7 +357,9 @@
             border-radius: 0.3rem;
             text-decoration: none;
             font-weight: 600;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
+            position: relative;
+            overflow: hidden;
             transition: background 0.3s ease;
         }
 
@@ -271,7 +370,7 @@
         /* Footer */
         footer {
             background: var(--black);
-            padding: 2rem;
+            padding: 3rem 2rem;
             border-top: 1px solid var(--gold);
         }
 
@@ -284,13 +383,13 @@
         }
 
         .footer-column h3 {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             color: var(--gold);
             margin-bottom: 1rem;
         }
 
         .footer-column p, .footer-column ul li a {
-            font-size: 1rem;
+            font-size: 1.1rem;
             color: var(--white);
             text-decoration: none;
         }
@@ -305,12 +404,12 @@
 
         .footer-bottom {
             text-align: center;
-            padding-top: 1.5rem;
+            padding-top: 2rem;
             border-top: 1px solid var(--gold);
         }
 
         .footer-bottom p {
-            font-size: 0.9rem;
+            font-size: 1rem;
             color: var(--white);
         }
 
@@ -324,8 +423,8 @@
         }
 
         .social-links a img {
-            width: 30px;
-            height: 30px;
+            width: 32px;
+            height: 32px;
             filter: brightness(0) invert(1);
             margin-right: 0.5rem;
         }
@@ -349,9 +448,10 @@
             justify-content: center;
             text-decoration: none;
             font-size: 1.2rem;
-            transition: opacity 0.3s ease;
+            transition: opacity 0.3s ease, background 0.3s ease;
             opacity: 0;
             visibility: hidden;
+            z-index: 99;
         }
 
         .back-to-top.visible {
@@ -376,22 +476,24 @@
         /* Responsive Design */
         @media (max-width: 1024px) {
             .hero h1 { font-size: 3rem; }
-            .features h2, .cta-section h2 { font-size: 2rem; }
+            .features h2, .cta-section h2 { font-size: 2.5rem; }
             .features-grid { grid-template-columns: 1fr; }
             .stats-container { flex-direction: column; }
         }
 
         @media (max-width: 768px) {
             nav ul { gap: 1rem; }
-            .hero { padding: 3rem 1.5rem; }
+            .hero { padding: 4rem 1.5rem; }
             .hero h1 { font-size: 2.5rem; }
             .footer-content { grid-template-columns: 1fr; }
+            .sparkle { width: 3px; height: 3px; }
         }
 
         @media (max-width: 480px) {
             .hero h1 { font-size: 2rem; }
-            .hero-cta, .cta-button, .nav-cta { padding: 0.6rem 1.2rem; font-size: 0.9rem; }
-            nav ul { display: none; } /* Hide menu on small screens, consider adding a hamburger menu */
+            .hero-cta, .cta-button, .nav-cta { padding: 0.6rem 1.2rem; font-size: 1rem; }
+            nav ul { display: none; } /* Consider adding hamburger menu */
+            .sparkle { width: 2px; height: 2px; }
         }
     </style>
 </head>
@@ -405,35 +507,41 @@
                 <li><a href="#stats">Статистика</a></li>
                 <li><a href="https://allgameg87.github.io/Cs2boost_price/">Прайс</a></li>
             </ul>
-            <a href="https://funpay.com/lots/offer?id=39385134" class="nav-cta">Get Started</a>
+            <a href="https://funpay.com/lots/offer?id=39385134" class="nav-cta">
+                Get Started
+                <div class="sparkles"></div>
+            </a>
         </nav>
     </header>
 
     <!-- Hero Section -->
     <section class="hero">
-        <h1>Играй на высшем уровне</h1>
-        <p>Достигай вершин с лучшим триггер-ботом.</p>
-        <a href="https://funpay.com/lots/offer?id=39384867" class="hero-cta">Начать сейчас</a>
+        <h1>Играй с изяществом</h1>
+        <p>Достигай вершин с элитным триггер-ботом.</p>
+        <a href="https://funpay.com/lots/offer?id=39384867" class="hero-cta">
+            Начать сейчас
+            <div class="sparkles"></div>
+        </a>
     </section>
 
     <!-- Features Section -->
     <section class="features" id="features">
-        <h2>Почему выбирают Cs2boost?</h2>
+        <h2>Почему Cs2boost?</h2>
         <div class="features-grid">
             <div class="feature-card">
-                <h3>Гибкость</h3>
-                <p>Настрой триггер для идеального игрового опыта.</p>
+                <h3>Искры Гениальности</h3>
+                <p>Гибкие настройки для идеального игрового опыта.</p>
             </div>
             <div class="feature-card">
-                <h3>Поддержка</h3>
+                <h3>Элегантная Поддержка</h3>
                 <p>Связь 24/7 через <a href="https://t.me/cs2boostTrigger" class="support-link">Telegram</a>.</p>
             </div>
             <div class="feature-card">
-                <h3>Профессионализм</h3>
-                <p>Код с уникальными библиотеками для обхода античита.</p>
+                <h3>Изящный Код</h3>
+                <p>Уникальные библиотеки для обхода античита.</p>
             </div>
             <div class="feature-card">
-                <h3>Обновления</h3>
+                <h3>Искусство Обновлений</h3>
                 <p>Регулярные улучшения под новые версии игры.</p>
             </div>
         </div>
@@ -463,9 +571,12 @@
 
     <!-- CTA Section -->
     <section class="cta-section">
-        <h2>Готов к победе?</h2>
-        <p>Присоединяйся и стань лучшим.</p>
-        <a href="https://funpay.com/lots/offer?id=39385054" class="cta-button">Вступить сейчас</a>
+        <h2>Готов к величию?</h2>
+        <p>Присоединяйся к элите игроков.</p>
+        <a href="https://funpay.com/lots/offer?id=39385054" class="cta-button">
+            Вступить сейчас
+            <div class="sparkles"></div>
+        </a>
     </section>
 
     <!-- Footer -->
@@ -473,7 +584,7 @@
         <div class="footer-content">
             <div class="footer-column">
                 <h3>Cs2boost</h3>
-                <p>Надежный триггер-бот, созданный профессионалами. Невидимый и доступный.</p>
+                <p>Элитный триггер-бот, созданный мастерами для тех, кто стремится к совершенству.</p>
                 <div class="social-links">
                     <a href="https://t.me/cs2boostSapport"><img src="https://img.icons8.com/?size=100&id=114954&format=png&color=000000" alt="Telegram"></a>
                 </div>
@@ -495,7 +606,129 @@
     <!-- Back to Top Button -->
     <a href="#" class="back-to-top">↑</a>
 
+    <!-- Particles Canvas -->
+    <canvas id="particles"></canvas>
+
     <script>
+        // Sparkles for Buttons
+        const buttons = document.querySelectorAll('.nav-cta, .hero-cta, .cta-button');
+        buttons.forEach(button => {
+            const sparklesContainer = button.querySelector('.sparkles');
+            const sparkleCount = 6;
+            for (let i = 0; i < sparkleCount; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.classList.add('sparkle');
+                sparklesContainer.appendChild(sparkle);
+                const angle = (i / sparkleCount) * 2 * Math.PI;
+                const radius = 20 + Math.random() * 10;
+                const x = 50 + radius * Math.cos(angle);
+                const y = 50 + radius * Math.sin(angle);
+                sparkle.style.left = `${x}%`;
+                sparkle.style.top = `${y}%`;
+                sparkle.style.animationDelay = `${Math.random() * 2}s`;
+                sparkle.addEventListener('animationiteration', () => {
+                    const newAngle = Math.random() * 2 * Math.PI;
+                    const newRadius = 20 + Math.random() * 10;
+                    const newX = 50 + newRadius * Math.cos(newAngle);
+                    const newY = 50 + newRadius * Math.sin(newAngle);
+                    sparkle.style.left = `${newX}%`;
+                    sparkle.style.top = `${newY}%`;
+                    sparkle.style.animationDelay = `${Math.random() * 2}s`;
+                });
+            }
+        });
+
+        // Animated Background with Particles
+        const canvas = document.getElementById('particles');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const particlesArray = [];
+        const numberOfParticles = window.innerWidth > 768 ? 60 : 30;
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 1;
+                this.speedX = Math.random() * 0.4 - 0.2;
+                this.speedY = Math.random() * 0.4 - 0.2;
+                this.color = `rgba(212, 175, 55, ${Math.random() * 0.5 + 0.2})`;
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+            }
+
+            draw() {
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+                for (let i = 0; i < particlesArray.length; i++) {
+                    const dx = this.x - particlesArray[i].x;
+                    const dy = this.y - particlesArray[i].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    if (distance < 100) {
+                        ctx.strokeStyle = `rgba(212, 175, 55, ${0.5 - distance / 200})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.beginPath();
+                        ctx.moveTo(this.x, this.y);
+                        ctx.lineTo(particlesArray[i].x, particlesArray[i].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        function initParticles() {
+            for (let i = 0; i < numberOfParticles; i++) {
+                particlesArray.push(new Particle());
+            }
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particlesArray.length; i++) {
+                particlesArray[i].update();
+                particlesArray[i].draw();
+            }
+            requestAnimationFrame(animateParticles);
+        }
+
+        initParticles();
+        animateParticles();
+
+        // Parallax Effect for Background
+        document.addEventListener('mousemove', (e) => {
+            const moveX = (e.clientX / window.innerWidth - 0.5) * 20;
+            const moveY = (e.clientY / window.innerHeight - 0.5) * 20;
+            particlesArray.forEach(particle => {
+                particle.x += moveX * 0.02;
+                particle.y += moveY * 0.02;
+            });
+        });
+
+        // Touch Support for Mobile
+        document.addEventListener('touchmove', (e) => {
+            const touch = e.touches[0];
+            const moveX = (touch.clientX / window.innerWidth - 0.5) * 20;
+            const moveY = (touch.clientY / window.innerHeight - 0.5) * 20;
+            particlesArray.forEach(particle => {
+                particle.x += moveX * 0.02;
+                particle.y += moveY * 0.02;
+            });
+        });
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
         // Back to Top Button
         const backToTopButton = document.querySelector('.back-to-top');
         window.addEventListener('scroll', () => {
