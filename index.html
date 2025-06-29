@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cs2boost - everything for you :)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --black: #000000;
+            --white: #FFFFFF;
+            --gold: #D4AF37;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: var(--white);
+            background-color: var(--black);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #111111;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--gold);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #B8860B;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--black);
+            border-bottom: 1px solid var(--gold);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, var(--gold), #B8860B);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.8rem;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--white);
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: var(--gold);
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        nav ul li a.active {
+            color: var(--gold);
+            text-shadow: 0 0 10px var(--gold);
+        }
+
+        nav ul li a.active::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            background: var(--gold);
+            color: var(--black);
+            padding: 0.6rem 1.2rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            border: 2px solid var(--gold);
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px var(--gold);
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            max-width: 1400px;
+            margin: 4rem auto;
+            text-align: center;
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, #111111, var(--black));
+            border-radius: 1.5rem;
+            overflow: hidden;
+            z-index: 1;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            margin-bottom: 5rem;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            color: var(--white);
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            animation: fadeIn 1s ease-out;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            color: var(--white);
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            animation: fadeIn 1s ease-out 0.2s;
+            animation-fill-mode: both;
+        }
+
+        .hero-cta {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--black);
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.25rem;
+            transition: all 0.3s ease;
+            animation: fadeIn 1s ease-out 0.4s;
+            animation-fill-mode: both;
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.4);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            border: 2px solid var(--gold);
+        }
+
+        .hero-cta:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 30px var(--gold);
+        }
+
+        /* Features Section */
+        .features {
+            max-width: 1400px;
+            margin: 6rem auto;
+            padding: 0 2rem;
+        }
+
+        .features h2 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--white);
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: fadeInScale 1.2s ease-in-out;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .feature-card {
+            background-color: #111111;
+            padding: 2.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            transition: all 0.4s ease;
+            animation: fadeInUp 1s ease-out;
+            animation-fill-mode: both;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--gold);
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 1rem;
+            padding: 2px;
+            background: linear-gradient(135deg, var(--gold), #B8860B);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+            opacity: 0.3;
+            transition: opacity 0.3s ease;
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .feature-card h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--gold), #B8860B);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card p {
+            color: var(--white);
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        .support-link {
+            color: var(--gold);
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .support-link:hover {
+            text-shadow: 0 0 10px var(--gold);
+        }
+
+        .feature-card:nth-child(1) { animation-delay: 0.3s; }
+        .feature-card:nth-child(2) { animation-delay: 0.6s; }
+        .feature-card:nth-child(3) { animation-delay: 0.9s; }
+        .feature-card:nth-child(4) { animation-delay: 1.2s; }
+
+        /* Stats Section */
+        .stats {
+            max-width: 1400px;
+            margin: 8rem auto;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #111111, var(--black));
+            border-radius: 1.5rem;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 2rem;
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, var(--gold), #B8860B);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        .stat-label {
+            font-size: 1.2rem;
+            color: var(--white);
+            font-weight: 600;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            max-width: 1400px;
+            margin: 8rem auto;
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, #111111, var(--black));
+            border-radius: 1.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .cta-section h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--white);
+            margin-bottom: 2rem;
+        }
+
+        .cta-section p {
+            font-size: 1.3rem;
+            color: var(--white);
+            max-width: 700px;
+            margin: 0 auto 3rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--black);
+            padding: 1rem 2.5rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.25rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.4);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            border: 2px solid var(--gold);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 30px var(--gold);
+        }
+
+        /* Sparkles Animation */
+        .sparkles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.9) 30%, rgba(212, 175, 55, 0) 70%);
+            border-radius: 50%;
+            opacity: 0;
+            animation: uniformTwinkle 4s ease-in-out infinite;
+        }
+
+        @keyframes uniformTwinkle {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.2);
+                box-shadow: 0 0 10px rgba(212, 175, 55, 0.8), 0 0 20px rgba(212, 175, 55, 0.6);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0.8);
+                box-shadow: 0 0 5px rgba(212, 175, 55, 0.2);
+            }
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--black);
+            padding: 4rem 2rem 2rem;
+            color: var(--white);
+            position: relative;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-column {
+            position: relative;
+            padding: 2rem;
+            border-radius: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .footer-column::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 1rem;
+            padding: 2px;
+            background: linear-gradient(135deg, var(--gold), #B8860B);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+            opacity: 0.3;
+        }
+
+        .footer-column h3 {
+            font-size: 1.5rem;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-column ul li a {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--white);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--gold);
+            transform: translateX(5px);
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--gold);
+        }
+
+        .footer-bottom a {
+            color: var(--gold);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-bottom a:hover {
+            text-decoration: underline;
+        }
+
+        .social-links a img {
+            width: 40px;
+            height: 40px;
+            filter: brightness(0) invert(1); /* Makes icons white */
+        }
+
+        .social-links a:hover {
+            background: var(--gold);
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: var(--gold);
+            color: var(--black);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1.5rem;
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4);
+            z-index: 99;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px var(--gold);
+        }
+
+        /* Canvas for particles */
+        #particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            pointer-events: none;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInScale {
+            0% { opacity: 0; transform: translateX(-50%) scale(0.9); }
+            100% { opacity: 1; transform: translateX(-50%) scale(1); }
+        }
+
+        /* Responsive design */
+        @media (max-width: 1024px) {
+            .hero h1 { font-size: 3rem; }
+            .hero p { font-size: 1.3rem; }
+            .features h2, .cta-section h2 { font-size: 2.5rem; }
+        }
+
+        @media (max-width: 768px) {
+            nav ul { display: none; }
+            nav { justify-content: space-between; }
+            .hero { padding: 4rem 1.5rem; margin: 2rem auto; }
+            .hero h1 { font-size: 2.8rem; }
+            .stats-container { grid-template-columns: 1fr; }
+            .footer-content { grid-template-columns: 1fr; }
+            .sparkle { width: 3px; height: 3px; }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 2.2rem; }
+            .hero-cta, .cta-button { padding: 0.8rem 1.5rem; font-size: 1rem; }
+            .sparkle { width: 2px; height: 2px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Существующий HTML остается без изменений -->
+    <header>
+        <nav>
+            <a href="https://allgameg87.github.io/Cs2boost/" class="logo">Cs2boost</a>
+            <ul>
+                <li><a href="#features">Особенности</a></li>
+                <li><a href="#stats">Статистика</a></li>
+                <li><a href="https://allgameg87.github.io/Cs2boost_price/">Прайс</a></li>
+            </ul>
+            <a href="https://funpay.com/lots/offer?id=39385134" class="nav-cta">
+                Get Started
+                <div class="sparkles"></div>
+            </a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Начни Играть Как Pro</h1>
+        <p>Раскройте весь свой потенциал.</p>
+        <a href="https://funpay.com/lots/offer?id=39384867" class="hero-cta">
+            Перейди на новый уровень
+            <div class="sparkles"></div>
+        </a>
+    </section>
+
+    <section class="features" id="features">
+        <h2>Почему стоит выбрать Cs2boost?</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <h3>Очень гибкий функционал</h3>
+                <p>Огромные возможности настроить триггер для твоей комфортной игры.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Активная поддержка</h3>
+                <p>По любому вопросу можете писать <a href="https://t.me/cs2boostTrigger" class="support-link">сюда</a>.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Профессиональный подход</h3>
+                <p>Мы пишем наш триггер через самые не популярные библиотеки для обхода античита.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Регулярные обновления</h3>
+                <p>С каждым обновлением античита и игры мы усовершенствуем наш триггер бот.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats" id="stats">
+        <div class="stats-container">
+            <div class="stat-item">
+                <div class="stat-number">500+</div>
+                <div class="stat-label">Активных клиентов</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Undetect</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">200+</div>
+                <div class="stat-label">Отзывов</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">24/7</div>
+                <div class="stat-label">Комьюнити</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <h2>Готов повысить свой уровень в игре?</h2>
+        <p>Присоединяйся к нам и ты станешь лучшей версией себя.</p>
+        <a href="https://funpay.com/lots/offer?id=39385054" class="cta-button">
+            Твое здесь и сейчас
+            <div class="sparkles"></div>
+        </a>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Cs2boost</h3>
+                <p>Идеальный триггер бот который в undetect уже год, мы пишем программу только с опытными профессионалами которые знают свое дело, и спустя длительные тесты нашего триггер бота он вышел по доступной цене.</p>
+                <div class="social-links">
+                    <a href="https://t.me/cs2boostSapport"><img src="https://img.icons8.com/?size=100&id=114954&format=png&color=000000" alt="Telegram" style="width: 40px; height: 40px;"></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Перенаправление</h3>
+                <ul>
+                    <li><a href="#features">Особенности</a></li>
+                    <li><a href="#stats">Статистика</a></li>
+                    <li><a href="https://allgameg87.github.io/Cs2boost_price/">Прайс</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Cs2boost. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+        </div>
+    </footer>
+
+    <a href="#" class="back-to-top">↑</a>
+    <canvas id="particles"></canvas>
+
+    <script>
+        // Обновление частиц для золотого цвета
+        const canvas = document.getElementById('particles');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const particlesArray = [];
+        const numberOfParticles = window.innerWidth > 768 ? 100 : 50;
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 3 + 1;
+                this.speedX = Math.random() * 0.5 - 0.25;
+                this.speedY = Math.random() * 0.5 - 0.25;
+                this.color = `rgba(212, 175, 55, ${Math.random() * 0.5 + 0.1})`;
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+            }
+
+            draw() {
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+                for (let i = 0; i < particlesArray.length; i++) {
+                    const dx = this.x - particlesArray[i].x;
+                    const dy = this.y - particlesArray[i].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    if (distance < 150) {
+                        ctx.strokeStyle = `rgba(212, 175, 55, ${1 - distance/150})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.beginPath();
+                        ctx.moveTo(this.x, this.y);
+                        ctx.lineTo(particlesArray[i].x, particlesArray[i].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        function initParticles() {
+            for (let i = 0; i < numberOfParticles; i++) {
+                particlesArray.push(new Particle());
+            }
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particlesArray.length; i++) {
+                particlesArray[i].update();
+                particlesArray[i].draw();
+            }
+            requestAnimationFrame(animateParticles);
+        }
+
+        initParticles();
+        animateParticles();
+
+        // Остальной JavaScript остается без изменений
+        const buttons = document.querySelectorAll('.nav-cta, .hero-cta, .cta-button');
+        buttons.forEach(button => {
+            const sparklesContainer = button.querySelector('.sparkles');
+            const sparkleCount = 8;
+            for (let i = 0; i < sparkleCount; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.classList.add('sparkle');
+                sparklesContainer.appendChild(sparkle);
+                const angle = (i / sparkleCount) * 2 * Math.PI;
+                const radius = 30 + Math.random() * 20;
+                const x = 50 + radius * Math.cos(angle);
+                const y = 50 + radius * Math.sin(angle);
+                sparkle.style.left = `${x}%`;
+                sparkle.style.top = `${y}%`;
+                sparkle.style.animationDelay = `${Math.random() * 2}s`;
+                sparkle.addEventListener('animationiteration', () => {
+                    const newAngle = Math.random() * 2 * Math.PI;
+                    const newRadius = 30 + Math.random() * 20;
+                    const newX = 50 + newRadius * Math.cos(newAngle);
+                    const newY = 50 + newRadius * Math.sin(newAngle);
+                    sparkle.style.left = `${newX}%`;
+                    sparkle.style.top = `${newY}%`;
+                    sparkle.style.animationDelay = `${Math.random() * 2}s`;
+                });
+            }
+        });
+
+        const hero = document.querySelector('.hero');
+        document.addEventListener('mousemove', (e) => {
+            const rect = hero.getBoundingClientRect();
+            const x = ((e.clientX - rect.left) / rect.width) * 100;
+            const y = ((e.clientY - rect.top) / rect.height) * 100;
+            hero.style.setProperty('--mouse-x', `${x}%`);
+            hero.style.setProperty('--mouse-y', `${y}%`);
+        });
+
+        document.addEventListener('touchmove', (e) => {
+            const touch = e.touches[0];
+            const rect = hero.getBoundingClientRect();
+            const x = ((touch.clientX - rect.left) / rect.width) * 100;
+            const y = ((touch.clientY - rect.top) / rect.height) * 100;
+            hero.style.setProperty('--mouse-x', `${x}%`);
+            hero.style.setProperty('--mouse-y', `${y}%`);
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            const x = (window.innerWidth / 2 - e.clientX) / 50;
+            const y = (window.innerHeight / 2 - e.clientY) / 50;
+            document.querySelector('.hero h1').style.setProperty('--parallax-y', `${y}px`);
+            document.querySelector('.hero p').style.setProperty('--parallax-y', `${y * 0.8}px`);
+        });
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        const backToTopButton = document.querySelector('.back-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        });
+
+        backToTopButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.feature-card, .stat-item');
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                if (elementPosition < screenPosition) {
+                    element.style.animation = 'fadeInUp 0.8s ease-out forwards';
+                }
+            });
+        };
+
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+    </script>
+</body>
+          </html>
