@@ -25,7 +25,7 @@
             font-family: 'Lora', serif;
             line-height: 1.6;
             color: var(--white);
-            background: linear-gradient(180deg, var(--black), var(--dark-gray));
+            background: var(--black);
             overflow-x: hidden;
             scroll-behavior: smooth;
             position: relative;
@@ -53,15 +53,44 @@
             background: var(--dark-gold);
         }
 
-        /* Animated Background */
-        #particles {
+        /* Animated Wave Background */
+        #wave-bg {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             z-index: -1;
-            pointer-events: none;
+            background: linear-gradient(180deg, var(--black), var(--dark-gray));
+        }
+
+        .wave {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(90deg, var(--gold), var(--dark-gold));
+            opacity: 0.1;
+            animation: wave 10s linear infinite;
+        }
+
+        .wave:nth-child(2) {
+            bottom: -20px;
+            opacity: 0.15;
+            animation-duration: 12s;
+            animation-delay: -3s;
+        }
+
+        .wave:nth-child(3) {
+            bottom: -40px;
+            opacity: 0.2;
+            animation-duration: 15s;
+            animation-delay: -5s;
+        }
+
+        @keyframes wave {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(1000px); }
         }
 
         /* Header */
@@ -72,7 +101,6 @@
             top: 0;
             z-index: 100;
             border-bottom: 1px solid var(--gold);
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
         }
 
         nav {
@@ -84,21 +112,10 @@
         }
 
         .logo {
-            font-size: 2.2rem;
+            font-size: 2rem;
             font-weight: 700;
             color: var(--gold);
             text-decoration: none;
-            position: relative;
-        }
-
-        .logo::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 50%;
-            height: 2px;
-            background: var(--gold);
         }
 
         nav ul {
@@ -110,25 +127,9 @@
         nav ul li a {
             color: var(--white);
             text-decoration: none;
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 600;
             transition: color 0.3s ease;
-            position: relative;
-        }
-
-        nav ul li a::after {
-            content: '';
-            position: absolute;
-            bottom: -3px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--gold);
-            transition: width 0.3s ease;
-        }
-
-        nav ul li a:hover::after {
-            width: 100%;
         }
 
         nav ul li a:hover {
@@ -173,7 +174,7 @@
 
         @keyframes uniformTwinkle {
             0% { opacity: 0; transform: scale(0.8); }
-            50% { opacity: 1; transform: scale(1.2); box-shadow: 0 0 10px rgba(212, 175, 55, 0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
             100% { opacity: 0; transform: scale(0.8); }
         }
 
@@ -182,22 +183,21 @@
             max-width: 1200px;
             margin: 3rem auto;
             text-align: center;
-            padding: 6rem 2rem;
-            background: rgba(0, 0, 0, 0.8);
-            border-radius: 0.5rem;
+            padding: 5rem 2rem;
+            background: rgba(0, 0, 0, 0.85);
+            border: 1px solid var(--gold);
             position: relative;
             z-index: 1;
         }
 
         .hero h1 {
-            font-size: 4rem;
+            font-size: 3.5rem;
             color: var(--white);
             margin-bottom: 1rem;
-            text-shadow: 0 2px 5px rgba(212, 175, 55, 0.3);
         }
 
         .hero p {
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             color: var(--white);
             max-width: 600px;
             margin: 0 auto 2rem;
@@ -211,7 +211,7 @@
             border-radius: 0.3rem;
             text-decoration: none;
             font-weight: 600;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             position: relative;
             overflow: hidden;
             transition: background 0.3s ease;
@@ -229,7 +229,7 @@
         }
 
         .features h2 {
-            font-size: 3rem;
+            font-size: 2.5rem;
             color: var(--gold);
             text-align: center;
             margin-bottom: 2rem;
@@ -242,8 +242,8 @@
             bottom: -5px;
             left: 50%;
             transform: translateX(-50%);
-            width: 100px;
-            height: 2px;
+            width: 80px;
+            height: 1px;
             background: var(--gold);
         }
 
@@ -254,11 +254,10 @@
         }
 
         .feature-card {
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.85);
             padding: 2rem;
-            border-radius: 0.5rem;
-            text-align: center;
             border: 1px solid var(--gold);
+            text-align: center;
             transition: transform 0.3s ease;
         }
 
@@ -267,13 +266,13 @@
         }
 
         .feature-card h3 {
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             color: var(--gold);
             margin-bottom: 1rem;
         }
 
         .feature-card p {
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: var(--white);
         }
 
@@ -287,66 +286,67 @@
             text-decoration: underline;
         }
 
-        /* Stats Section */
-        .stats {
+        /* Advantages Section (replacing Stats) */
+        .advantages {
             max-width: 1200px;
             margin: 4rem auto;
             padding: 3rem 2rem;
-            background: rgba(0, 0, 0, 0.8);
-            border-radius: 0.5rem;
+            background: rgba(0, 0, 0, 0.85);
+            border: 1px solid var(--gold);
         }
 
-        .stats-container {
-            display: flex;
-            justify-content: space-between;
-            gap: 1rem;
+        .advantages h2 {
+            font-size: 2.5rem;
+            color: var(--gold);
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .advantages h2::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 1px;
+            background: var(--gold);
+        }
+
+        .advantages-content {
+            max-width: 800px;
+            margin: 0 auto;
             text-align: center;
         }
 
-        .stat-item {
-            flex: 1;
-            padding: 1rem;
-        }
-
-        .stat-number {
-            font-size: 2.8rem;
-            color: var(--gold);
-            margin-bottom: 0.5rem;
-            opacity: 0;
-            animation: countUp 2s ease-out forwards;
-        }
-
-        .stat-label {
+        .advantages-content p {
             font-size: 1.1rem;
             color: var(--white);
-        }
-
-        @keyframes countUp {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            margin-bottom: 1rem;
         }
 
         /* CTA Section */
         .cta-section {
             max-width: 1200px;
             margin: 4rem auto;
-            padding: 4rem 2rem;
-            background: rgba(0, 0, 0, 0.8);
-            border-radius: 0.5rem;
+            padding: 3rem 2rem;
+            background: rgba(0, 0, 0, 0.85);
+            border: 1px solid var(--gold);
             text-align: center;
         }
 
         .cta-section h2 {
-            font-size: 3rem;
+            font-size: 2.5rem;
             color: var(--gold);
             margin-bottom: 1rem;
         }
 
         .cta-section p {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             color: var(--white);
             max-width: 600px;
-            margin: 0 auto 2rem;
+            margin: 0 auto 1.5rem;
         }
 
         .cta-button {
@@ -357,7 +357,7 @@
             border-radius: 0.3rem;
             text-decoration: none;
             font-weight: 600;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             position: relative;
             overflow: hidden;
             transition: background 0.3s ease;
@@ -370,7 +370,7 @@
         /* Footer */
         footer {
             background: var(--black);
-            padding: 3rem 2rem;
+            padding: 2rem;
             border-top: 1px solid var(--gold);
         }
 
@@ -383,13 +383,13 @@
         }
 
         .footer-column h3 {
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             color: var(--gold);
             margin-bottom: 1rem;
         }
 
         .footer-column p, .footer-column ul li a {
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: var(--white);
             text-decoration: none;
         }
@@ -404,12 +404,12 @@
 
         .footer-bottom {
             text-align: center;
-            padding-top: 2rem;
+            padding-top: 1.5rem;
             border-top: 1px solid var(--gold);
         }
 
         .footer-bottom p {
-            font-size: 1rem;
+            font-size: 0.9rem;
             color: var(--white);
         }
 
@@ -423,8 +423,8 @@
         }
 
         .social-links a img {
-            width: 32px;
-            height: 32px;
+            width: 30px;
+            height: 30px;
             filter: brightness(0) invert(1);
             margin-right: 0.5rem;
         }
@@ -469,31 +469,32 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .hero, .features, .stats, .cta-section, .feature-card, .stat-item {
+        .hero, .features, .advantages, .cta-section, .feature-card {
             animation: fadeIn 0.8s ease-out;
         }
 
         /* Responsive Design */
         @media (max-width: 1024px) {
             .hero h1 { font-size: 3rem; }
-            .features h2, .cta-section h2 { font-size: 2.5rem; }
+            .features h2, .advantages h2, .cta-section h2 { font-size: 2rem; }
             .features-grid { grid-template-columns: 1fr; }
-            .stats-container { flex-direction: column; }
         }
 
         @media (max-width: 768px) {
             nav ul { gap: 1rem; }
-            .hero { padding: 4rem 1.5rem; }
+            .hero { padding: 3rem 1.5rem; }
             .hero h1 { font-size: 2.5rem; }
             .footer-content { grid-template-columns: 1fr; }
             .sparkle { width: 3px; height: 3px; }
+            .wave { height: 60px; }
         }
 
         @media (max-width: 480px) {
             .hero h1 { font-size: 2rem; }
-            .hero-cta, .cta-button, .nav-cta { padding: 0.6rem 1.2rem; font-size: 1rem; }
+            .hero-cta, .cta-button, .nav-cta { padding: 0.6rem 1.2rem; font-size: 0.9rem; }
             nav ul { display: none; } /* Consider adding hamburger menu */
             .sparkle { width: 2px; height: 2px; }
+            .wave { height: 40px; }
         }
     </style>
 </head>
@@ -504,7 +505,7 @@
             <a href="https://allgameg87.github.io/Cs2boost/" class="logo">Cs2boost</a>
             <ul>
                 <li><a href="#features">Особенности</a></li>
-                <li><a href="#stats">Статистика</a></li>
+                <li><a href="#advantages">Преимущества</a></li>
                 <li><a href="https://allgameg87.github.io/Cs2boost_price/">Прайс</a></li>
             </ul>
             <a href="https://funpay.com/lots/offer?id=39385134" class="nav-cta">
@@ -547,25 +548,13 @@
         </div>
     </section>
 
-    <!-- Stats Section -->
-    <section class="stats" id="stats">
-        <div class="stats-container">
-            <div class="stat-item">
-                <div class="stat-number">500+</div>
-                <div class="stat-label">Клиентов</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">100%</div>
-                <div class="stat-label">Невидимость</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">200+</div>
-                <div class="stat-label">Отзывов</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">24/7</div>
-                <div class="stat-label">Поддержка</div>
-            </div>
+    <!-- Advantages Section -->
+    <section class="advantages" id="advantages">
+        <h2>Наши преимущества</h2>
+        <div class="advantages-content">
+            <p>Cs2boost предлагает надежное решение для игроков, стремящихся к совершенству. Наш триггер-бот сочетает передовые технологии и простоту использования.</p>
+            <p>Мы гарантируем стабильную работу, постоянные обновления и круглосуточную поддержку, чтобы вы могли сосредоточиться на игре.</p>
+            <p>Присоединяйтесь к сотням довольных пользователей, которые уже достигли новых высот с Cs2boost.</p>
         </div>
     </section>
 
@@ -593,7 +582,7 @@
                 <h3>Ссылки</h3>
                 <ul>
                     <li><a href="#features">Особенности</a></li>
-                    <li><a href="#stats">Статистика</a></li>
+                    <li><a href="#advantages">Преимущества</a></li>
                     <li><a href="https://allgameg87.github.io/Cs2boost_price/">Прайс</a></li>
                 </ul>
             </div>
@@ -606,8 +595,12 @@
     <!-- Back to Top Button -->
     <a href="#" class="back-to-top">↑</a>
 
-    <!-- Particles Canvas -->
-    <canvas id="particles"></canvas>
+    <!-- Wave Background -->
+    <div id="wave-bg">
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+    </div>
 
     <script>
         // Sparkles for Buttons
@@ -636,97 +629,6 @@
                     sparkle.style.animationDelay = `${Math.random() * 2}s`;
                 });
             }
-        });
-
-        // Animated Background with Particles
-        const canvas = document.getElementById('particles');
-        const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-
-        const particlesArray = [];
-        const numberOfParticles = window.innerWidth > 768 ? 60 : 30;
-
-        class Particle {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 2 + 1;
-                this.speedX = Math.random() * 0.4 - 0.2;
-                this.speedY = Math.random() * 0.4 - 0.2;
-                this.color = `rgba(212, 175, 55, ${Math.random() * 0.5 + 0.2})`;
-            }
-
-            update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-                if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
-                if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
-            }
-
-            draw() {
-                ctx.fillStyle = this.color;
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
-                for (let i = 0; i < particlesArray.length; i++) {
-                    const dx = this.x - particlesArray[i].x;
-                    const dy = this.y - particlesArray[i].y;
-                    const distance = Math.sqrt(dx * dx + dy * dy);
-                    if (distance < 100) {
-                        ctx.strokeStyle = `rgba(212, 175, 55, ${0.5 - distance / 200})`;
-                        ctx.lineWidth = 0.5;
-                        ctx.beginPath();
-                        ctx.moveTo(this.x, this.y);
-                        ctx.lineTo(particlesArray[i].x, particlesArray[i].y);
-                        ctx.stroke();
-                    }
-                }
-            }
-        }
-
-        function initParticles() {
-            for (let i = 0; i < numberOfParticles; i++) {
-                particlesArray.push(new Particle());
-            }
-        }
-
-        function animateParticles() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            for (let i = 0; i < particlesArray.length; i++) {
-                particlesArray[i].update();
-                particlesArray[i].draw();
-            }
-            requestAnimationFrame(animateParticles);
-        }
-
-        initParticles();
-        animateParticles();
-
-        // Parallax Effect for Background
-        document.addEventListener('mousemove', (e) => {
-            const moveX = (e.clientX / window.innerWidth - 0.5) * 20;
-            const moveY = (e.clientY / window.innerHeight - 0.5) * 20;
-            particlesArray.forEach(particle => {
-                particle.x += moveX * 0.02;
-                particle.y += moveY * 0.02;
-            });
-        });
-
-        // Touch Support for Mobile
-        document.addEventListener('touchmove', (e) => {
-            const touch = e.touches[0];
-            const moveX = (touch.clientX / window.innerWidth - 0.5) * 20;
-            const moveY = (touch.clientY / window.innerHeight - 0.5) * 20;
-            particlesArray.forEach(particle => {
-                particle.x += moveX * 0.02;
-                particle.y += moveY * 0.02;
-            });
-        });
-
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
         });
 
         // Back to Top Button
