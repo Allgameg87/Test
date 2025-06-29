@@ -18,16 +18,16 @@
             --white: #FFFFFF;
             --gold: #D4AF37;
             --dark-gold: #B8860B;
+            --dark-gray: #1C2526;
         }
 
         body {
             font-family: 'Montserrat', sans-serif;
             line-height: 1.6;
             color: var(--white);
-            background: linear-gradient(135deg, #0a0a0a, #1c2526);
+            background: linear-gradient(180deg, var(--black), var(--dark-gray));
             overflow-x: hidden;
             scroll-behavior: smooth;
-            position: relative;
         }
 
         h1, h2, h3 {
@@ -40,7 +40,7 @@
         }
 
         ::-webkit-scrollbar-track {
-            background: #0a0a0a;
+            background: var(--dark-gray);
         }
 
         ::-webkit-scrollbar-thumb {
@@ -52,119 +52,81 @@
             background: var(--dark-gold);
         }
 
-        /* Sidebar Navigation */
-        .sidebar {
-            position: fixed;
-            top: 0;
-            left: -250px;
-            width: 250px;
-            height: 100%;
+        /* Header */
+        header {
             background: var(--black);
-            padding: 2rem 1rem;
-            transition: left 0.3s ease;
-            z-index: 1000;
-            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
+            padding: 1.5rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--gold);
         }
 
-        .sidebar:hover {
-            left: 0;
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         .logo {
             font-size: 2rem;
             font-weight: 700;
-            background: linear-gradient(90deg, var(--gold), var(--dark-gold));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-align: center;
-            margin-bottom: 2rem;
+            color: var(--gold);
             text-decoration: none;
         }
 
-        .sidebar ul {
+        nav ul {
+            display: flex;
             list-style: none;
+            gap: 2rem;
         }
 
-        .sidebar ul li {
-            margin: 1.5rem 0;
-        }
-
-        .sidebar ul li a {
+        nav ul li a {
             color: var(--white);
             text-decoration: none;
-            font-size: 1.2rem;
+            font-size: 1rem;
             font-weight: 600;
-            transition: all 0.3s ease;
-            display: block;
-            padding: 0.5rem 1rem;
-            position: relative;
+            transition: color 0.3s ease;
         }
 
-        .sidebar ul li a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--gold);
-            transition: width 0.3s ease;
-        }
-
-        .sidebar ul li a:hover {
+        nav ul li a:hover {
             color: var(--gold);
-            transform: translateX(10px);
         }
 
-        .sidebar ul li a:hover::after {
-            width: 100%;
-        }
-
-        .sidebar .nav-cta {
-            display: block;
+        .nav-cta {
             background: var(--gold);
             color: var(--black);
-            padding: 0.8rem 1.5rem;
-            border-radius: 0.5rem;
-            text-align: center;
+            padding: 0.6rem 1.5rem;
+            border-radius: 0.3rem;
             text-decoration: none;
-            font-weight: 700;
-            margin: 2rem 1rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
-            position: relative;
-            overflow: hidden;
+            font-weight: 600;
+            transition: background 0.3s ease;
         }
 
-        .sidebar .nav-cta:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
+        .nav-cta:hover {
+            background: var(--dark-gold);
         }
 
         /* Hero Section */
         .hero {
             max-width: 1200px;
-            margin: 4rem auto;
+            margin: 3rem auto;
             text-align: center;
-            padding: 8rem 2rem;
-            background: linear-gradient(135deg, rgba(10, 10, 10, 0.8), rgba(28, 37, 38, 0.8));
-            border-radius: 1rem;
-            position: relative;
-            z-index: 1;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            padding: 5rem 2rem;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 0.5rem;
         }
 
         .hero h1 {
-            font-size: 4.5rem;
-            font-weight: 900;
+            font-size: 3.5rem;
             color: var(--white);
-            margin-bottom: 1.5rem;
-            text-shadow: 0 2px 10px rgba(212, 175, 55, 0.3);
+            margin-bottom: 1rem;
         }
 
         .hero p {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             color: var(--white);
             max-width: 600px;
             margin: 0 auto 2rem;
@@ -174,168 +136,150 @@
             display: inline-block;
             background: var(--gold);
             color: var(--black);
-            padding: 1rem 2rem;
-            border-radius: 0.5rem;
+            padding: 0.8rem 2rem;
+            border-radius: 0.3rem;
             text-decoration: none;
-            font-weight: 700;
-            font-size: 1.25rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.4);
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: background 0.3s ease;
         }
 
         .hero-cta:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.6);
+            background: var(--dark-gold);
         }
 
         /* Features Section */
         .features {
             max-width: 1200px;
-            margin: 6rem auto;
+            margin: 4rem auto;
             padding: 0 2rem;
         }
 
         .features h2 {
-            font-size: 3.5rem;
+            font-size: 2.5rem;
             color: var(--gold);
             text-align: center;
-            margin-bottom: 3rem;
-            text-shadow: 0 2px 10px rgba(212, 175, 55, 0.3);
+            margin-bottom: 2rem;
         }
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: 1fr 1fr;
             gap: 2rem;
         }
 
         .feature-card {
-            background: rgba(10, 10, 10, 0.9);
-            padding: 2rem;
-            border-radius: 1rem;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 1.5rem;
+            border-radius: 0.5rem;
             text-align: center;
-            transition: all 0.4s ease;
             border: 1px solid var(--gold);
-            position: relative;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
         }
 
         .feature-card h3 {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             color: var(--gold);
             margin-bottom: 1rem;
         }
 
         .feature-card p {
+            font-size: 1rem;
             color: var(--white);
-            font-size: 1.1rem;
         }
 
         .support-link {
             color: var(--gold);
             text-decoration: none;
             font-weight: 600;
-            transition: all 0.3s ease;
         }
 
         .support-link:hover {
-            text-shadow: 0 0 10px var(--gold);
+            text-decoration: underline;
         }
 
         /* Stats Section */
         .stats {
             max-width: 1200px;
-            margin: 6rem auto;
-            padding: 4rem 2rem;
-            background: linear-gradient(135deg, rgba(10, 10, 10, 0.8), rgba(28, 37, 38, 0.8));
-            border-radius: 1rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            margin: 4rem auto;
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 0.5rem;
         }
 
         .stats-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
             text-align: center;
         }
 
         .stat-item {
-            padding: 1.5rem;
+            flex: 1;
+            padding: 1rem;
         }
 
         .stat-number {
-            font-size: 3rem;
-            font-weight: 700;
+            font-size: 2.5rem;
             color: var(--gold);
             margin-bottom: 0.5rem;
         }
 
         .stat-label {
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: var(--white);
         }
 
         /* CTA Section */
         .cta-section {
             max-width: 1200px;
-            margin: 6rem auto;
-            padding: 5rem 2rem;
-            background: linear-gradient(135deg, rgba(10, 10, 10, 0.8), rgba(28, 37, 38, 0.8));
-            border-radius: 1rem;
+            margin: 4rem auto;
+            padding: 3rem 2rem;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 0.5rem;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
 
         .cta-section h2 {
-            font-size: 3rem;
+            font-size: 2.5rem;
             color: var(--gold);
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
         }
 
         .cta-section p {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             color: var(--white);
             max-width: 600px;
-            margin: 0 auto 2rem;
+            margin: 0 auto 1.5rem;
         }
 
         .cta-button {
             display: inline-block;
             background: var(--gold);
             color: var(--black);
-            padding: 1rem 2.5rem;
-            border-radius: 0.5rem;
+            padding: 0.8rem 2rem;
+            border-radius: 0.3rem;
             text-decoration: none;
-            font-weight: 700;
-            font-size: 1.25rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.4);
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: background 0.3s ease;
         }
 
         .cta-button:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.6);
+            background: var(--dark-gold);
         }
 
         /* Footer */
         footer {
             background: var(--black);
-            padding: 3rem 2rem;
-            color: var(--white);
+            padding: 2rem;
+            border-top: 1px solid var(--gold);
         }
 
         .footer-content {
             max-width: 1200px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: 1fr 1fr;
             gap: 2rem;
         }
 
@@ -351,25 +295,43 @@
             text-decoration: none;
         }
 
+        .footer-column ul li {
+            margin-bottom: 0.5rem;
+        }
+
         .footer-column ul li a:hover {
             color: var(--gold);
         }
 
         .footer-bottom {
             text-align: center;
-            padding-top: 2rem;
+            padding-top: 1.5rem;
             border-top: 1px solid var(--gold);
         }
 
-        .social-links a img {
-            width: 32px;
-            height: 32px;
-            filter: brightness(0) invert(1);
+        .footer-bottom p {
+            font-size: 0.9rem;
+            color: var(--white);
         }
 
-        .social-links a:hover {
-            background: var(--gold);
-            border-radius: 50%;
+        .footer-bottom a {
+            color: var(--gold);
+            text-decoration: none;
+        }
+
+        .footer-bottom a:hover {
+            text-decoration: underline;
+        }
+
+        .social-links a img {
+            width: 30px;
+            height: 30px;
+            filter: brightness(0) invert(1);
+            margin-right: 0.5rem;
+        }
+
+        .social-links a:hover img {
+            filter: none;
         }
 
         /* Back to Top Button */
@@ -377,8 +339,8 @@
             position: fixed;
             bottom: 2rem;
             right: 2rem;
-            width: 50px;
-            height: 50px;
+            width: 40px;
+            height: 40px;
             background: var(--gold);
             color: var(--black);
             border-radius: 50%;
@@ -386,12 +348,10 @@
             align-items: center;
             justify-content: center;
             text-decoration: none;
-            font-size: 1.5rem;
-            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4);
-            z-index: 99;
+            font-size: 1.2rem;
+            transition: opacity 0.3s ease;
             opacity: 0;
             visibility: hidden;
-            transition: all 0.3s ease;
         }
 
         .back-to-top.visible {
@@ -400,126 +360,81 @@
         }
 
         .back-to-top:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.6);
-        }
-
-        /* Particles Background */
-        #particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            pointer-events: none;
+            background: var(--dark-gold);
         }
 
         /* Animations */
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
+            from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Sparkles */
-        .sparkles {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        .sparkle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: radial-gradient(circle, rgba(212, 175, 55, 0.9) 30%, rgba(212, 175, 55, 0) 70%);
-            border-radius: 50%;
-            opacity: 0;
-            animation: uniformTwinkle 4s ease-in-out infinite;
-        }
-
-        @keyframes uniformTwinkle {
-            0% { opacity: 0; transform: scale(0.8); }
-            50% { opacity: 1; transform: scale(1.2); box-shadow: 0 0 10px rgba(212, 175, 55, 0.8); }
-            100% { opacity: 0; transform: scale(0.8); }
+        .hero, .features, .stats, .cta-section, .feature-card, .stat-item {
+            animation: fadeIn 0.8s ease-out;
         }
 
         /* Responsive Design */
         @media (max-width: 1024px) {
-            .hero h1 { font-size: 3.5rem; }
-            .features h2, .cta-section h2 { font-size: 2.5rem; }
+            .hero h1 { font-size: 3rem; }
+            .features h2, .cta-section h2 { font-size: 2rem; }
+            .features-grid { grid-template-columns: 1fr; }
+            .stats-container { flex-direction: column; }
         }
 
         @media (max-width: 768px) {
-            .sidebar { left: -250px; }
-            .sidebar:hover { left: 0; }
-            .hero { padding: 5rem 1.5rem; }
-            .hero h1 { font-size: 2.8rem; }
-            .stats-container { grid-template-columns: 1fr; }
+            nav ul { gap: 1rem; }
+            .hero { padding: 3rem 1.5rem; }
+            .hero h1 { font-size: 2.5rem; }
             .footer-content { grid-template-columns: 1fr; }
-            .sparkle { width: 3px; height: 3px; }
         }
 
         @media (max-width: 480px) {
-            .hero h1 { font-size: 2.2rem; }
-            .hero-cta, .cta-button { padding: 0.8rem 1.5rem; font-size: 1rem; }
-            .sparkle { width: 2px; height: 2px; }
+            .hero h1 { font-size: 2rem; }
+            .hero-cta, .cta-button, .nav-cta { padding: 0.6rem 1.2rem; font-size: 0.9rem; }
+            nav ul { display: none; } /* Hide menu on small screens, consider adding a hamburger menu */
         }
     </style>
 </head>
 <body>
-    <!-- Sidebar Navigation -->
-    <nav class="sidebar">
-        <a href="https://allgameg87.github.io/Cs2boost/" class="logo">Cs2boost</a>
-        <ul>
-            <li><a href="#features">Особенности</a></li>
-            <li><a href="#stats">Статистика</a></li>
-            <li><a href="https://allgameg87.github.io/Cs2boost_price/">Прайс</a></li>
-        </ul>
-        <a href="https://funpay.com/lots/offer?id=39385134" class="nav-cta">
-            Get Started
-            <div class="sparkles"></div>
-        </a>
-    </nav>
+    <!-- Header -->
+    <header>
+        <nav>
+            <a href="https://allgameg87.github.io/Cs2boost/" class="logo">Cs2boost</a>
+            <ul>
+                <li><a href="#features">Особенности</a></li>
+                <li><a href="#stats">Статистика</a></li>
+                <li><a href="https://allgameg87.github.io/Cs2boost_price/">Прайс</a></li>
+            </ul>
+            <a href="https://funpay.com/lots/offer?id=39385134" class="nav-cta">Get Started</a>
+        </nav>
+    </header>
 
     <!-- Hero Section -->
-    <section class="hero" id="hero">
-        <h1>Стань легендой игры</h1>
-        <p>Раскрой свой потенциал с элитным триггер-ботом.</p>
-        <a href="https://funpay.com/lots/offer?id=39384867" class="hero-cta">
-            Начать миссию
-            <div class="sparkles"></div>
-        </a>
+    <section class="hero">
+        <h1>Играй на высшем уровне</h1>
+        <p>Достигай вершин с лучшим триггер-ботом.</p>
+        <a href="https://funpay.com/lots/offer?id=39384867" class="hero-cta">Начать сейчас</a>
     </section>
 
     <!-- Features Section -->
     <section class="features" id="features">
-        <h2>Почему Cs2boost?</h2>
+        <h2>Почему выбирают Cs2boost?</h2>
         <div class="features-grid">
             <div class="feature-card">
-                <h3>Искры Гениальности</h3>
-                <p>Гибкие настройки для идеального игрового опыта.</p>
+                <h3>Гибкость</h3>
+                <p>Настрой триггер для идеального игрового опыта.</p>
             </div>
             <div class="feature-card">
-                <h3>Агенты Поддержки</h3>
+                <h3>Поддержка</h3>
                 <p>Связь 24/7 через <a href="https://t.me/cs2boostTrigger" class="support-link">Telegram</a>.</p>
             </div>
             <div class="feature-card">
-                <h3>Шпионская Точность</h3>
-                <p>Код через уникальные библиотеки для обхода античита.</p>
+                <h3>Профессионализм</h3>
+                <p>Код с уникальными библиотеками для обхода античита.</p>
             </div>
             <div class="feature-card">
-                <h3>Эволюция Мастерства</h3>
-                <p>Обновления под каждую версию игры и античита.</p>
+                <h3>Обновления</h3>
+                <p>Регулярные улучшения под новые версии игры.</p>
             </div>
         </div>
     </section>
@@ -529,7 +444,7 @@
         <div class="stats-container">
             <div class="stat-item">
                 <div class="stat-number">500+</div>
-                <div class="stat-label">Агентов</div>
+                <div class="stat-label">Клиентов</div>
             </div>
             <div class="stat-item">
                 <div class="stat-number">100%</div>
@@ -537,23 +452,20 @@
             </div>
             <div class="stat-item">
                 <div class="stat-number">200+</div>
-                <div class="stat-label">Медалей</div>
+                <div class="stat-label">Отзывов</div>
             </div>
             <div class="stat-item">
                 <div class="stat-number">24/7</div>
-                <div class="stat-label">Операции</div>
+                <div class="stat-label">Поддержка</div>
             </div>
         </div>
     </section>
 
     <!-- CTA Section -->
     <section class="cta-section">
-        <h2>Готов стать элитой?</h2>
-        <p>Присоединяйся к секретному обществу лучших игроков.</p>
-        <a href="https://funpay.com/lots/offer?id=39385054" class="cta-button">
-            Вступить в ряды
-            <div class="sparkles"></div>
-        </a>
+        <h2>Готов к победе?</h2>
+        <p>Присоединяйся и стань лучшим.</p>
+        <a href="https://funpay.com/lots/offer?id=39385054" class="cta-button">Вступить сейчас</a>
     </section>
 
     <!-- Footer -->
@@ -561,13 +473,13 @@
         <div class="footer-content">
             <div class="footer-column">
                 <h3>Cs2boost</h3>
-                <p>Элитный триггер-бот, остающийся невидимым уже год. Создан мастерами своего дела для тех, кто стремится к вершине.</p>
+                <p>Надежный триггер-бот, созданный профессионалами. Невидимый и доступный.</p>
                 <div class="social-links">
                     <a href="https://t.me/cs2boostSapport"><img src="https://img.icons8.com/?size=100&id=114954&format=png&color=000000" alt="Telegram"></a>
                 </div>
             </div>
             <div class="footer-column">
-                <h3>Миссии</h3>
+                <h3>Ссылки</h3>
                 <ul>
                     <li><a href="#features">Особенности</a></li>
                     <li><a href="#stats">Статистика</a></li>
@@ -576,102 +488,14 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>© 2025 Cs2boost. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+            <p>© 2025 Cs2boost. Все права защищены. | <a href="#">Политика конфиденциальности</a> | <a href="#">Условия использования</a></p>
         </div>
     </footer>
 
     <!-- Back to Top Button -->
     <a href="#" class="back-to-top">↑</a>
 
-    <!-- Particles Canvas -->
-    <canvas id="particles"></canvas>
-
     <script>
-        // Sparkles for Buttons
-        const buttons = document.querySelectorAll('.nav-cta, .hero-cta, .cta-button');
-        buttons.forEach(button => {
-            const sparklesContainer = button.querySelector('.sparkles');
-            const sparkleCount = 6;
-            for (let i = 0; i < sparkleCount; i++) {
-                const sparkle = document.createElement('div');
-                sparkle.classList.add('sparkle');
-                sparklesContainer.appendChild(sparkle);
-                const angle = (i / sparkleCount) * 2 * Math.PI;
-                const radius = 20 + Math.random() * 15;
-                const x = 50 + radius * Math.cos(angle);
-                const y = 50 + radius * Math.sin(angle);
-                sparkle.style.left = `${x}%`;
-                sparkle.style.top = `${y}%`;
-                sparkle.style.animationDelay = `${Math.random() * 2}s`;
-                sparkle.addEventListener('animationiteration', () => {
-                    const newAngle = Math.random() * 2 * Math.PI;
-                    const newRadius = 20 + Math.random() * 15;
-                    const newX = 50 + newRadius * Math.cos(newAngle);
-                    const newY = 50 + newRadius * Math.sin(newAngle);
-                    sparkle.style.left = `${newX}%`;
-                    sparkle.style.top = `${newY}%`;
-                    sparkle.style.animationDelay = `${Math.random() * 2}s`;
-                });
-            }
-        });
-
-        // Particles Background
-        const canvas = document.getElementById('particles');
-        const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-
-        const particlesArray = [];
-        const numberOfParticles = window.innerWidth > 768 ? 80 : 40;
-
-        class Particle {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 2 + 1;
-                this.speedX = Math.random() * 0.3 - 0.15;
-                this.speedY = Math.random() * 0.3 - 0.15;
-                this.color = `rgba(212, 175, 55, ${Math.random() * 0.4 + 0.1})`;
-            }
-
-            update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-                if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
-                if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
-            }
-
-            draw() {
-                ctx.fillStyle = this.color;
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
-            }
-        }
-
-        function initParticles() {
-            for (let i = 0; i < numberOfParticles; i++) {
-                particlesArray.push(new Particle());
-            }
-        }
-
-        function animateParticles() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            for (let i = 0; i < particlesArray.length; i++) {
-                particlesArray[i].update();
-                particlesArray[i].draw();
-            }
-            requestAnimationFrame(animateParticles);
-        }
-
-        initParticles();
-        animateParticles();
-
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        });
-
         // Back to Top Button
         const backToTopButton = document.querySelector('.back-to-top');
         window.addEventListener('scroll', () => {
@@ -696,7 +520,7 @@
                 const targetElement = document.querySelector(targetId);
                 if (targetElement) {
                     window.scrollTo({
-                        top: targetElement.offsetTop - 20,
+                        top: targetElement.offsetTop - 80,
                         behavior: 'smooth'
                     });
                 }
