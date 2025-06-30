@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cs2boost - Kingsman Grandeur</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Lora:wght@400;600&display=swap" rel="stylesheet">
+    <title>Kingsman - Элегантность и Стиль</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Cinzel:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         /* Reset and base styles */
         * {
@@ -22,38 +22,68 @@
         }
 
         body {
-            font-family: 'Lora', serif;
+            font-family: 'Cormorant Garamond', serif;
             line-height: 1.6;
             color: var(--white);
             background: linear-gradient(180deg, var(--black), var(--dark-gray));
             overflow-x: hidden;
             scroll-behavior: smooth;
             position: relative;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
         }
 
-        h1, h2, h3 {
-            font-family: 'Cinzel Decorative', serif;
+        body.loaded {
+            opacity: 1;
         }
 
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
+        /* Loading Screen */
+        #loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--black);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 1s ease-out;
         }
 
-        ::-webkit-scrollbar-track {
-            background: var(--dark-gray);
+        #matrix-rain {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
         }
 
-        ::-webkit-scrollbar-thumb {
-            background: var(--gold);
-            border-radius: 4px;
+        .loading-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
         }
 
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--dark-gold);
+        .loading-logo {
+            font-family: 'Cinzel', serif;
+            font-size: 5rem;
+            color: var(--gold);
+            margin-bottom: 2rem;
+            opacity: 0;
+            transform: scale(0.8);
+            animation: logoPop 1.5s ease forwards 0.5s;
+            text-shadow: 0 0 20px var(--gold);
         }
 
-        /* Animated Background */
+        @keyframes logoPop {
+            0% { opacity: 0; transform: scale(0.8); }
+            70% { opacity: 1; transform: scale(1.1); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        /* Rain Effect - Enhanced */
         #rain-bg {
             position: fixed;
             top: 0;
@@ -62,34 +92,104 @@
             height: 100%;
             z-index: -1;
             pointer-events: none;
+            opacity: 0.8; /* Increased visibility */
+            background: linear-gradient(to bottom, 
+                rgba(0, 0, 0, 0.1), 
+                rgba(0, 0, 0, 0.3)
+            );
         }
 
-        /* Header */
+        .rain-drop {
+            position: absolute;
+            width: 2px; /* Thicker drops */
+            background: linear-gradient(transparent, var(--gold));
+            animation: rain linear infinite;
+            opacity: 0.7; /* More visible */
+        }
+
+        @keyframes rain {
+            0% {
+                transform: translateY(-100vh);
+                opacity: 0;
+            }
+            5% {
+                opacity: 0.7;
+            }
+            90% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
+
+        /* Main Content Styles */
+        .hero {
+            max-width: 1400px; /* Wider container */
+            margin: 8rem auto 4rem;
+            text-align: center;
+            padding: 8rem 3rem;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(28, 37, 38, 0.9));
+            border-radius: 15px;
+            position: relative;
+            z-index: 1;
+            border: 3px solid var(--gold);
+            box-shadow: 0 0 40px rgba(212, 175, 55, 0.3);
+        }
+
+        .hero h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 5rem; /* Larger heading */
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            line-height: 1.1;
+            text-shadow: 0 3px 8px rgba(0, 0, 0, 0.6);
+        }
+
+        .hero p {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--white);
+            max-width: 900px;
+            margin: 0 auto 3rem;
+            line-height: 1.7;
+            font-weight: 400;
+            letter-spacing: 0.03em;
+        }
+
+        /* Header Styles */
         header {
-            background: var(--black);
-            padding: 1.5rem 2rem;
+            background: rgba(0, 0, 0, 0.95);
+            padding: 1.5rem 0;
             position: fixed;
             top: 0;
             width: 100%;
             z-index: 100;
-            border-bottom: 1px solid var(--gold);
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            border-bottom: 3px solid var(--gold);
+            box-shadow: 0 3px 20px rgba(212, 175, 55, 0.3);
         }
 
         nav {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 0 3rem;
         }
 
         .logo {
-            font-size: 2rem;
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
             font-weight: 700;
             color: var(--gold);
             text-decoration: none;
             position: relative;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
         }
 
         .logo::after {
@@ -97,35 +197,38 @@
             position: absolute;
             bottom: -5px;
             left: 0;
-            width: 50%;
-            height: 2px;
-            background: var(--gold);
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
         }
 
         nav ul {
             display: flex;
             list-style: none;
-            gap: 2rem;
+            gap: 3.5rem;
+            align-items: center;
         }
 
         nav ul li a {
             color: var(--white);
             text-decoration: none;
-            font-size: 1.1rem;
-            font-weight: 600;
-            transition: color 0.3s ease;
+            font-size: 1.2rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
             position: relative;
+            padding: 0.5rem 0;
         }
 
         nav ul li a::after {
             content: '';
             position: absolute;
-            bottom: -3px;
-            left: 0;
+            bottom: 0;
+            left: 50%;
             width: 0;
             height: 2px;
             background: var(--gold);
-            transition: width 0.3s ease;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
         }
 
         nav ul li a:hover::after {
@@ -137,35 +240,24 @@
         }
 
         .nav-cta {
-            background: var(--gold);
+            background: linear-gradient(45deg, var(--dark-gold), var(--gold));
             color: var(--black);
-            padding: 0.6rem 1.5rem;
-            border-radius: 0.3rem;
+            padding: 1rem 2.5rem;
+            border-radius: 0.4rem;
             text-decoration: none;
             font-weight: 600;
             position: relative;
             overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border: 1px solid var(--dark-gold);
         }
 
         .nav-cta:hover {
-            transform: scale(1.05);
-            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
-        }
-
-        .nav-cta::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.3), transparent);
-            transition: left 0.4s ease;
-        }
-
-        .nav-cta:hover::before {
-            left: 100%;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.5);
+            color: var(--black);
         }
 
         .sparkles {
@@ -180,92 +272,32 @@
 
         .sparkle {
             position: absolute;
-            width: 3px;
-            height: 3px;
+            width: 4px;
+            height: 4px;
             background: radial-gradient(circle, rgba(212, 175, 55, 0.9) 30%, rgba(212, 175, 55, 0) 70%);
             border-radius: 50%;
             opacity: 0;
-            animation: sparkleWave 2.5s ease-in-out infinite;
+            animation: sparkleWave 2s ease-in-out infinite;
         }
 
         @keyframes sparkleWave {
             0% { opacity: 0; transform: scale(0.8); }
-            50% { opacity: 1; transform: scale(1.2); box-shadow: 0 0 8px rgba(212, 175, 55, 0.8); }
+            50% { opacity: 1; transform: scale(1.3); box-shadow: 0 0 10px rgba(212, 175, 55, 0.9); }
             100% { opacity: 0; transform: scale(0.8); }
-        }
-
-        /* Hero Section */
-        .hero {
-            max-width: 1200px;
-            margin: 6rem auto 3rem;
-            text-align: center;
-            padding: 5rem 2rem;
-            background: rgba(0, 0, 0, 0.85);
-            border-radius: 0.5rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            color: var(--white);
-            margin-bottom: 1rem;
-            text-shadow: 0 2px 5px rgba(212, 175, 55, 0.3);
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            color: var(--white);
-            max-width: 600px;
-            margin: 0 auto 2rem;
-        }
-
-        .hero-cta {
-            display: inline-block;
-            background: var(--gold);
-            color: var(--black);
-            padding: 0.8rem 2rem;
-            border-radius: 0.3rem;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.2rem;
-            position: relative;
-            overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .hero-cta:hover {
-            transform: scale(1.05);
-            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
-        }
-
-        .hero-cta::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.3), transparent);
-            transition: left 0.4s ease;
-        }
-
-        .hero-cta:hover::before {
-            left: 100%;
         }
 
         /* Why Section */
         .why {
-            max-width: 1200px;
-            margin: 4rem auto;
-            padding: 0 2rem;
+            max-width: 1400px;
+            margin: 5rem auto;
+            padding: 0 3rem;
         }
 
         .why h2 {
-            font-size: 3rem;
+            font-size: 3.5rem;
             color: var(--gold);
             text-align: center;
-            margin-bottom: 2rem;
+            margin-bottom: 3rem;
             position: relative;
         }
 
@@ -275,21 +307,21 @@
             bottom: -5px;
             left: 50%;
             transform: translateX(-50%);
-            width: 100px;
-            height: 2px;
+            width: 120px;
+            height: 3px;
             background: var(--gold);
         }
 
         .why-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
+            gap: 3rem;
         }
 
         .why-card {
             background: rgba(0, 0, 0, 0.9);
-            padding: 2rem;
-            border-radius: 0.5rem;
+            padding: 2.5rem;
+            border-radius: 0.8rem;
             text-align: center;
             border: 2px solid var(--gold);
             position: relative;
@@ -303,7 +335,7 @@
             left: -2px;
             right: -2px;
             bottom: -2px;
-            border-radius: 0.5rem;
+            border-radius: 0.8rem;
             background: linear-gradient(45deg, var(--gold), var(--dark-gold));
             z-index: -1;
             opacity: 0.3;
@@ -311,22 +343,22 @@
         }
 
         .why-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4);
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.5);
         }
 
         .why-card:hover::before {
-            opacity: 0.5;
+            opacity: 0.6;
         }
 
         .why-card h3 {
-            font-size: 1.6rem;
+            font-size: 1.8rem;
             color: var(--gold);
-            margin-bottom: 1rem;
+            margin-bottom: 1.2rem;
         }
 
         .why-card p {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             color: var(--white);
         }
 
@@ -342,20 +374,20 @@
 
         /* Stats Section */
         .stats {
-            max-width: 1200px;
-            margin: 4rem auto;
-            padding: 3rem 2rem;
-            background: rgba(0, 0, 0, 0.85);
-            border-radius: 0.5rem;
+            max-width: 1400px;
+            margin: 5rem auto;
+            padding: 4rem 3rem;
+            background: rgba(0, 0, 0, 0.9);
+            border-radius: 0.8rem;
             position: relative;
             z-index: 1;
         }
 
         .stats h2 {
-            font-size: 3rem;
+            font-size: 3.5rem;
             color: var(--gold);
             text-align: center;
-            margin-bottom: 2rem;
+            margin-bottom: 3rem;
             position: relative;
         }
 
@@ -365,22 +397,22 @@
             bottom: -5px;
             left: 50%;
             transform: translateX(-50%);
-            width: 100px;
-            height: 2px;
+            width: 120px;
+            height: 3px;
             background: var(--gold);
         }
 
         .stats-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
             text-align: center;
         }
 
         .stat-item {
-            background: rgba(0, 0, 0, 0.9);
-            padding: 2rem;
-            border-radius: 0.5rem;
+            background: rgba(0, 0, 0, 0.95);
+            padding: 2.5rem;
+            border-radius: 0.8rem;
             border: 2px solid var(--gold);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             position: relative;
@@ -388,79 +420,79 @@
         }
 
         .stat-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4);
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.5);
         }
 
         .stat-icon {
-            width: 40px;
-            height: 40px;
-            margin-bottom: 1rem;
+            width: 50px;
+            height: 50px;
+            margin-bottom: 1.2rem;
             filter: brightness(0) invert(1) sepia(1) saturate(5) hue-rotate(20deg);
         }
 
         .stat-number {
-            font-size: 2.5rem;
+            font-size: 3rem;
             font-weight: 700;
             color: var(--gold);
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.8rem;
             opacity: 0;
             animation: countUp 2s ease-out forwards;
         }
 
         .stat-label {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             color: var(--white);
             font-weight: 600;
         }
 
         @keyframes countUp {
-            from { opacity: 0; transform: translateY(10px); }
+            from { opacity: 0; transform: translateY(15px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         /* CTA Section */
         .cta-section {
-            max-width: 1200px;
-            margin: 4rem auto;
-            padding: 4rem 2rem;
-            background: rgba(0, 0, 0, 0.85);
-            border-radius: 0.5rem;
+            max-width: 1400px;
+            margin: 5rem auto;
+            padding: 5rem 3rem;
+            background: rgba(0, 0, 0, 0.9);
+            border-radius: 0.8rem;
             text-align: center;
             position: relative;
             z-index: 1;
         }
 
         .cta-section h2 {
-            font-size: 3rem;
+            font-size: 3.5rem;
             color: var(--gold);
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
         }
 
         .cta-section p {
-            font-size: 1.3rem;
+            font-size: 1.5rem;
             color: var(--white);
-            max-width: 600px;
-            margin: 0 auto 2rem;
+            max-width: 700px;
+            margin: 0 auto 3rem;
         }
 
         .cta-button {
             display: inline-block;
             background: var(--gold);
             color: var(--black);
-            padding: 0.8rem 2rem;
-            border-radius: 0.3rem;
+            padding: 1rem 3rem;
+            border-radius: 0.4rem;
             text-decoration: none;
             font-weight: 600;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             position: relative;
             overflow: hidden;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .cta-button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+            transform: scale(1.08);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.5);
         }
 
         .cta-button::before {
@@ -470,7 +502,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.3), transparent);
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.4), transparent);
             transition: left 0.4s ease;
         }
 
@@ -481,34 +513,34 @@
         /* Footer */
         footer {
             background: var(--black);
-            padding: 3rem 2rem;
-            border-top: 1px solid var(--gold);
+            padding: 4rem 3rem;
+            border-top: 2px solid var(--gold);
             position: relative;
             z-index: 1;
         }
 
         .footer-content {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 2rem;
+            gap: 3rem;
         }
 
         .footer-column h3 {
-            font-size: 1.8rem;
+            font-size: 2rem;
             color: var(--gold);
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
         }
 
         .footer-column p, .footer-column ul li a {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             color: var(--white);
             text-decoration: none;
         }
 
         .footer-column ul li {
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.8rem;
         }
 
         .footer-column ul li a:hover {
@@ -517,12 +549,12 @@
 
         .footer-bottom {
             text-align: center;
-            padding-top: 2rem;
+            padding-top: 3rem;
             border-top: 1px solid var(--gold);
         }
 
         .footer-bottom p {
-            font-size: 1rem;
+            font-size: 1.1rem;
             color: var(--white);
         }
 
@@ -536,10 +568,10 @@
         }
 
         .social-links a img {
-            width: 32px;
-            height: 32px;
+            width: 40px;
+            height: 40px;
             filter: brightness(0) invert(1);
-            margin-right: 0.5rem;
+            margin-right: 0.8rem;
         }
 
         .social-links a:hover img {
@@ -549,10 +581,10 @@
         /* Back to Top Button */
         .back-to-top {
             position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            width: 40px;
-            height: 40px;
+            bottom: 3rem;
+            right: 3rem;
+            width: 50px;
+            height: 50px;
             background: var(--gold);
             color: var(--black);
             border-radius: 50%;
@@ -560,7 +592,7 @@
             align-items: center;
             justify-content: center;
             text-decoration: none;
-            font-size: 1.2rem;
+            font-size: 1.5rem;
             transition: opacity 0.3s ease, background 0.3s ease;
             opacity: 0;
             visibility: hidden;
@@ -578,43 +610,44 @@
 
         /* Animations */
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+            from { opacity: 0; transform: translateY(15px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         .hero, .why, .stats, .cta-section, .why-card, .stat-item {
-            animation: fadeIn 0.8s ease-out;
+            animation: fadeIn 1s ease-out;
         }
 
         /* Responsive Design */
         @media (max-width: 1024px) {
-            .hero h1 { font-size: 3rem; }
-            .why h2, .cta-section h2, .stats h2 { font-size: 2.5rem; }
+            .hero h1 { font-size: 4rem; }
+            .why h2, .cta-section h2, .stats h2 { font-size: 3rem; }
             .why-grid { grid-template-columns: 1fr 1fr; }
             .stats-container { grid-template-columns: 1fr 1fr; }
         }
 
         @media (max-width: 768px) {
-            nav ul { gap: 1rem; }
-            .hero { padding: 4rem 1.5rem; margin-top: 5rem; }
-            .hero h1 { font-size: 2.5rem; }
+            nav ul { gap: 1.5rem; }
+            .hero { padding: 5rem 2rem; margin-top: 6rem; }
+            .hero h1 { font-size: 3rem; }
             .why-grid { grid-template-columns: 1fr; }
             .stats-container { grid-template-columns: 1fr; }
             .footer-content { grid-template-columns: 1fr; }
-            .sparkle { width: 2px; height: 2px; }
+            .sparkle { width: 3px; height: 3px; }
         }
 
         @media (max-width: 480px) {
-            .hero h1 { font-size: 2rem; }
-            .hero-cta, .cta-button, .nav-cta { padding: 0.6rem 1.2rem; font-size: 1rem; }
+            .hero h1 { font-size: 2.5rem; }
+            .hero p { font-size: 1.5rem; }
+            .nav-cta, .cta-button { padding: 0.8rem 1.5rem; font-size: 1.1rem; }
             nav ul { display: none; }
-            .sparkle { width: 1.5px; height: 1.5px; }
+            .sparkle { width: 2px; height: 2px; }
         }
 
         /* Hamburger Menu */
         .hamburger {
             display: none;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             color: var(--gold);
             background: none;
             border: none;
@@ -628,66 +661,135 @@
                 display: flex;
                 flex-direction: column;
                 position: absolute;
-                top: 60px;
+                top: 70px;
                 left: 0;
                 width: 100%;
                 background: var(--black);
-                padding: 1rem;
-                border-top: 1px solid var(--gold);
+                padding: 1.5rem;
+                border-top: 2px solid var(--gold);
             }
             nav ul.active li {
-                margin: 0.5rem 0;
+                margin: 0.8rem 0;
             }
+        }
+
+        /* Button Styles */
+        .btn {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-family: 'Cinzel', serif;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            margin: 1.5rem;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--gold), var(--dark-gold));
+            opacity: 0;
+            z-index: -1;
+            transition: opacity 0.4s ease;
+        }
+
+        .btn:hover::before {
+            opacity: 1;
+        }
+
+        .btn-primary {
+            background: var(--gold);
+            color: var(--black);
+            border: 2px solid var(--dark-gold);
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-4px) scale(1.03);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.5);
+            color: var(--black);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--gold);
+            border: 2px solid var(--gold);
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.2);
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-4px) scale(1.03);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
+            color: var(--black);
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <canvas id="matrix-rain"></canvas>
+        <div class="loading-content">
+            <div class="loading-logo">KINGSMAN</div>
+        </div>
+    </div>
+
+    <div id="rain-bg"></div>
+    
+    <!-- Main Content -->
     <header>
         <nav>
-            <a href="https://allgameg87.github.io/Cs2boost/" class="logo">Cs2boost</a>
-            <ul id="nav-menu">
-                <li><a href="#why">Особенности</a></li>
-                <li><a href="#stats">Статистика</a></li>
-                <li><a href="https://allgameg87.github.io/Cs2boost_price/">Прайс</a></li>
-            </ul>
+            <a href="#" class="logo">Kingsman</a>
             <button class="hamburger">☰</button>
-            <a href="https://funpay.com/lots/offer?id=39385134" class="nav-cta">
-                Get Started
-                <div class="sparkles"></div>
-            </a>
+            <ul id="nav-menu">
+                <li><a href="#services">Услуги</a></li>
+                <li><a href="#about">О нас</a></li>
+                <li><a href="#portfolio">Портфолио</a></li>
+                <li><a href="#contact">Контакты</a></li>
+                <li><a href="#" class="nav-cta">Заказать</a></li>
+            </ul>
         </nav>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <h1>Играй с величием</h1>
-        <p>Достигай вершин с элитным триггер-ботом.</p>
-        <a href="https://funpay.com/lots/offer?id=39384867" class="hero-cta">
-            Начать сейчас
-            <div class="sparkles"></div>
-        </a>
-    </section>
+    <main>
+        <section class="hero">
+            <h1>Добро пожаловать в Kingsman</h1>
+            <p>Искры элегантности и мастерства в каждом решении. Мы создаем эксклюзивные услуги, подчеркивающие вашу индивидуальность и стиль.</p>
+            <div>
+                <a href="#services" class="btn btn-primary">Наши услуги</a>
+                <a href="#contact" class="btn btn-secondary">Связаться с нами</a>
+            </div>
+        </section>
+    </main>
 
     <!-- Why Section -->
     <section class="why" id="why">
-        <h2>Почему выбирают Cs2boost?</h2>
+        <h2>Почему выбирают Kingsman?</h2>
         <div class="why-grid">
             <div class="why-card">
-                <h3>Мастерство настройки</h3>
-                <p>Изысканные параметры для совершенного игрового опыта.</p>
+                <h3>Исключительное качество</h3>
+                <p>Каждая услуга создана с вниманием к деталям для идеального результата.</p>
             </div>
             <div class="why-card">
-                <h3>Исключительная поддержка</h3>
-                <p>Круглосуточная связь через <a href="https://t.me/cs2boostTrigger" class="support-link">Telegram</a>.</p>
+                <h3>Персонализированная поддержка</h3>
+                <p>Круглосуточная помощь через <a href="https://t.me/cs2boostTrigger" class="support-link">Telegram</a>.</p>
             </div>
             <div class="why-card">
-                <h3>Искры мастерства</h3>
-                <p>Уникальный код, обходящий античит с безупречной точностью.</p>
+                <h3>Инновационные решения</h3>
+                <p>Передовые технологии для достижения ваших целей.</p>
             </div>
             <div class="why-card">
-                <h3>Эволюция совершенства</h3>
-                <p>Постоянные обновления для актуальности и надежности.</p>
+                <h3>Постоянное развитие</h3>
+                <p>Регулярные обновления для актуальности и надежности.</p>
             </div>
         </div>
     </section>
@@ -699,32 +801,32 @@
             <div class="stat-item">
                 <img src="https://img.icons8.com/ios-filled/50/ffffff/user-group-man-man.png" alt="Clients" class="stat-icon">
                 <div class="stat-number">500+</div>
-                <div class="stat-label">Элитных клиентов</div>
+                <div class="stat-label">Довольных клиентов</div>
             </div>
             <div class="stat-item">
                 <img src="https://img.icons8.com/ios-filled/50/ffffff/invisible.png" alt="Stealth" class="stat-icon">
                 <div class="stat-number">100%</div>
-                <div class="stat-label">Безупречная защита</div>
+                <div class="stat-label">Гарантия качества</div>
             </div>
             <div class="stat-item">
                 <img src="https://img.icons8.com/ios-filled/50/ffffff/star.png" alt="Reviews" class="stat-icon">
                 <div class="stat-number">200+</div>
-                <div class="stat-label">Высоких похвал</div>
+                <div class="stat-label">Положительных отзывов</div>
             </div>
             <div class="stat-item">
                 <img src="https://img.icons8.com/ios-filled/50/ffffff/clock.png" alt="Support" class="stat-icon">
                 <div class="stat-number">24/7</div>
-                <div class="stat-label">Круглосуточная забота</div>
+                <div class="stat-label">Круглосуточная поддержка</div>
             </div>
         </div>
     </section>
 
     <!-- CTA Section -->
     <section class="cta-section">
-        <h2>Стань частью элиты</h2>
-        <p>Присоединяйся к тем, кто выбирает совершенство.</p>
+        <h2>Начните свой путь с Kingsman</h2>
+        <p>Присоединяйтесь к числу тех, кто выбирает элегантность и совершенство.</p>
         <a href="https://funpay.com/lots/offer?id=39385054" class="cta-button">
-            Вступить сейчас
+            Начать сейчас
             <div class="sparkles"></div>
         </a>
     </section>
@@ -733,8 +835,8 @@
     <footer>
         <div class="footer-content">
             <div class="footer-column">
-                <h3>Cs2boost</h3>
-                <p>Элитный триггер-бот, созданный мастерами для тех, кто стремится к величию.</p>
+                <h3>Kingsman</h3>
+                <p>Эксклюзивные решения для тех, кто ценит стиль и качество.</p>
                 <div class="social-links">
                     <a href="https://t.me/cs2boostSapport"><img src="https://img.icons8.com/?size=100&id=114954&format=png&color=000000" alt="Telegram"></a>
                 </div>
@@ -749,119 +851,132 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>© 2025 Cs2boost. Все права защищены. | <a href="#">Политика конфиденциальности</a> | <a href="#">Условия использования</a></p>
+            <p>© 2025 Kingsman. Все права защищены. | <a href="#">Политика конфиденциальности</a> | <a href="#">Условия использования</a></p>
         </div>
     </footer>
 
     <!-- Back to Top Button -->
     <a href="#" class="back-to-top">↑</a>
 
-    <!-- Rain Background Canvas -->
-    <canvas id="rain-bg"></canvas>
-
     <script>
+        // Enhanced Matrix Loading Animation
+        const matrixCanvas = document.getElementById('matrix-rain');
+        const matrixCtx = matrixCanvas.getContext('2d');
+
+        matrixCanvas.width = window.innerWidth;
+        matrixCanvas.height = window.innerHeight;
+
+        const chars = 'KINGSMAN0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        const fontSize = 18;
+        const columns = matrixCanvas.width / fontSize;
+        const matrixDrops = [];
+        const glowDrops = [];
+
+        for (let i = 0; i < columns; i++) {
+            matrixDrops[i] = Math.random() * matrixCanvas.height / fontSize;
+            glowDrops[i] = Math.random() > 0.9; // 10% chance for glowing drops
+        }
+
+        function drawMatrixRain() {
+            matrixCtx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+            matrixCtx.fillRect(0, 0, matrixCanvas.width, matrixCanvas.height);
+
+            for (let i = 0; i < matrixDrops.length; i++) {
+                const text = chars[Math.floor(Math.random() * chars.length)];
+                matrixCtx.font = fontSize + 'px monospace';
+                
+                // Glowing effect for some drops
+                if (glowDrops[i]) {
+                    matrixCtx.fillStyle = '#FFD700';
+                    matrixCtx.shadowColor = '#FFD700';
+                    matrixCtx.shadowBlur = 10;
+                } else {
+                    matrixCtx.fillStyle = '#D4AF37';
+                    matrixCtx.shadowBlur = 0;
+                }
+
+                matrixCtx.fillText(text, i * fontSize, matrixDrops[i] * fontSize);
+
+                if (matrixDrops[i] * fontSize > matrixCanvas.height && Math.random() > 0.95) {
+                    matrixDrops[i] = 0;
+                    glowDrops[i] = Math.random() > 0.9;
+                }
+                matrixDrops[i] += 0.5; // Slower fall speed
+            }
+        }
+
+        // Rain Effect
+        function createRain() {
+            const rainContainer = document.getElementById('rain-bg');
+            const rainDropCount = 50; // Increased number of drops
+
+            for (let i = 0; i < rainDropCount; i++) {
+                const drop = document.createElement('div');
+                drop.className = 'rain-drop';
+                
+                drop.style.left = Math.random() * 100 + '%';
+                drop.style.height = Math.random() * 200 + 150 + 'px'; // Longer drops
+                drop.style.animationDelay = Math.random() * 6 + 's';
+                drop.style.animationDuration = Math.random() * 3 + 2 + 's'; // Faster animation
+                drop.style.boxShadow = '0 0 5px rgba(212, 175, 55, 0.5)'; // Added glow
+                
+                rainContainer.appendChild(drop);
+            }
+        }
+
+        // Initialize animations
+        let matrixInterval = setInterval(drawMatrixRain, 30); // Smoother animation
+
+        // Page load handling
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.body.classList.add('loaded');
+                document.getElementById('loading-screen').style.opacity = '0';
+                setTimeout(() => {
+                    document.getElementById('loading-screen').style.display = 'none';
+                    clearInterval(matrixInterval);
+                    createRain();
+                }, 1000);
+            }, 3000); // Longer loading animation
+        });
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            matrixCanvas.width = window.innerWidth;
+            matrixCanvas.height = window.innerHeight;
+        });
+
         // Sparkles for Buttons
-        const buttons = document.querySelectorAll('.nav-cta, .hero-cta, .cta-button');
+        const buttons = document.querySelectorAll('.nav-cta, .cta-button, .btn');
         buttons.forEach(button => {
-            const sparklesContainer = button.querySelector('.sparkles');
-            const sparkleCount = 4;
+            const sparklesContainer = button.querySelector('.sparkles') || button;
+            if (!button.querySelector('.sparkles')) {
+                const sparklesDiv = document.createElement('div');
+                sparklesDiv.classList.add('sparkles');
+                button.appendChild(sparklesDiv);
+            }
+            const sparkleCount = 6;
             for (let i = 0; i < sparkleCount; i++) {
                 const sparkle = document.createElement('div');
                 sparkle.classList.add('sparkle');
                 sparklesContainer.appendChild(sparkle);
                 const angle = (i / sparkleCount) * 2 * Math.PI;
-                const radius = 15 + Math.random() * 8;
+                const radius = 20 + Math.random() * 10;
                 const x = 50 + radius * Math.cos(angle);
                 const y = 50 + radius * Math.sin(angle);
                 sparkle.style.left = `${x}%`;
                 sparkle.style.top = `${y}%`;
-                sparkle.style.animationDelay = `${Math.random() * 2}s`;
+                sparkle.style.animationDelay = `${Math.random() * 1.5}s`;
                 sparkle.addEventListener('animationiteration', () => {
                     const newAngle = Math.random() * 2 * Math.PI;
-                    const newRadius = 15 + Math.random() * 8;
+                    const newRadius = 20 + Math.random() * 10;
                     const newX = 50 + newRadius * Math.cos(newAngle);
                     const newY = 50 + newRadius * Math.sin(newAngle);
                     sparkle.style.left = `${newX}%`;
                     sparkle.style.top = `${newY}%`;
-                    sparkle.style.animationDelay = `${Math.random() * 2}s`;
+                    sparkle.style.animationDelay = `${Math.random() * 1.5}s`;
                 });
             }
-        });
-
-        // Animated Rain Background
-        const canvas = document.getElementById('rain-bg');
-        const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-
-        const drops = [];
-        const dropCount = window.innerWidth > 768 ? 100 : 50;
-
-        class Drop {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.length = Math.random() * 10 + 5;
-                this.speed = Math.random() * 2 + 1;
-                this.opacity = Math.random() * 0.3 + 0.1;
-            }
-
-            update() {
-                this.y += this.speed;
-                if (this.y > canvas.height) {
-                    this.y = -this.length;
-                    this.x = Math.random() * canvas.width;
-                }
-            }
-
-            draw() {
-                ctx.beginPath();
-                ctx.moveTo(this.x, this.y);
-                ctx.lineTo(this.x, this.y + this.length);
-                ctx.strokeStyle = `rgba(212, 175, 55, ${this.opacity})`;
-                ctx.lineWidth = 1;
-                ctx.stroke();
-            }
-        }
-
-        function initDrops() {
-            for (let i = 0; i < dropCount; i++) {
-                drops.push(new Drop());
-            }
-        }
-
-        function animateDrops() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            drops.forEach(drop => {
-                drop.update();
-                drop.draw();
-            });
-            requestAnimationFrame(animateDrops);
-        }
-
-        initDrops();
-        animateDrops();
-
-        // Parallax Effect for Drops
-        document.addEventListener('mousemove', (e) => {
-            const moveX = (e.clientX / window.innerWidth - 0.5) * 10;
-            drops.forEach(drop => {
-                drop.x += moveX * 0.02;
-            });
-        });
-
-        // Touch Support for Mobile
-        document.addEventListener('touchmove', (e) => {
-            const touch = e.touches[0];
-            const moveX = (touch.clientX / window.innerWidth - 0.5) * 10;
-            drops.forEach(drop => {
-                drop.x += moveX * 0.02;
-            });
-        });
-
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
         });
 
         // Hamburger Menu Toggle
