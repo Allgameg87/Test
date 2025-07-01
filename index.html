@@ -29,58 +29,10 @@
             overflow-x: hidden;
             scroll-behavior: smooth;
             position: relative;
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
         }
 
         body.loaded {
             opacity: 1;
-        }
-
-        /* Loading Screen */
-        #loading-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--black);
-            z-index: 9999;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: opacity 1s ease-out;
-        }
-
-        #matrix-rain {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-
-        .loading-content {
-            position: relative;
-            z-index: 1;
-            text-align: center;
-        }
-
-        .loading-logo {
-            font-family: 'Cinzel', serif;
-            font-size: 5rem;
-            color: var(--gold);
-            margin-bottom: 2rem;
-            opacity: 0;
-            transform: scale(0.8);
-            animation: logoPop 1.5s ease forwards 0.5s;
-            text-shadow: 0 0 20px var(--gold);
-        }
-
-        @keyframes logoPop {
-            0% { opacity: 0; transform: scale(0.8); }
-            70% { opacity: 1; transform: scale(1.1); }
-            100% { opacity: 1; transform: scale(1); }
         }
 
         /* Rain Effect - Enhanced */
@@ -90,7 +42,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -1;
+            z-index: -2;
             pointer-events: none;
             opacity: 0.8; /* Increased visibility */
             background: linear-gradient(to bottom, 
@@ -105,6 +57,7 @@
             background: linear-gradient(transparent, var(--gold));
             animation: rain linear infinite;
             opacity: 0.7; /* More visible */
+            animation-play-state: running;
         }
 
         @keyframes rain {
@@ -112,7 +65,7 @@
                 transform: translateY(-100vh);
                 opacity: 0;
             }
-            5% {
+            10% {
                 opacity: 0.7;
             }
             90% {
@@ -735,14 +688,6 @@
     </style>
 </head>
 <body>
-    <!-- Loading Screen -->
-    <div id="loading-screen">
-        <canvas id="matrix-rain"></canvas>
-        <div class="loading-content">
-            <div class="loading-logo">KINGSMAN</div>
-        </div>
-    </div>
-
     <div id="rain-bg"></div>
     
     <!-- Main Content -->
@@ -846,7 +791,7 @@
                 <ul>
                     <li><a href="#why">Особенности</a></li>
                     <li><a href="#stats">Статистика</a></li>
-                    <li><a href="https://allgameg87.github.io/Cs2boost_price/">Прайс</a></li>
+                    <li><a href="https://allgameg87.github.io/Kingsman_price/">Прайс</a></li>
                 </ul>
             </div>
         </div>
@@ -859,91 +804,41 @@
     <a href="#" class="back-to-top">↑</a>
 
     <script>
-        // Enhanced Matrix Loading Animation
-        const matrixCanvas = document.getElementById('matrix-rain');
-        const matrixCtx = matrixCanvas.getContext('2d');
-
-        matrixCanvas.width = window.innerWidth;
-        matrixCanvas.height = window.innerHeight;
-
-        const chars = 'KINGSMAN0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        const fontSize = 18;
-        const columns = matrixCanvas.width / fontSize;
-        const matrixDrops = [];
-        const glowDrops = [];
-
-        for (let i = 0; i < columns; i++) {
-            matrixDrops[i] = Math.random() * matrixCanvas.height / fontSize;
-            glowDrops[i] = Math.random() > 0.9; // 10% chance for glowing drops
-        }
-
-        function drawMatrixRain() {
-            matrixCtx.fillStyle = 'rgba(0, 0, 0, 0.1)';
-            matrixCtx.fillRect(0, 0, matrixCanvas.width, matrixCanvas.height);
-
-            for (let i = 0; i < matrixDrops.length; i++) {
-                const text = chars[Math.floor(Math.random() * chars.length)];
-                matrixCtx.font = fontSize + 'px monospace';
-                
-                // Glowing effect for some drops
-                if (glowDrops[i]) {
-                    matrixCtx.fillStyle = '#FFD700';
-                    matrixCtx.shadowColor = '#FFD700';
-                    matrixCtx.shadowBlur = 10;
-                } else {
-                    matrixCtx.fillStyle = '#D4AF37';
-                    matrixCtx.shadowBlur = 0;
-                }
-
-                matrixCtx.fillText(text, i * fontSize, matrixDrops[i] * fontSize);
-
-                if (matrixDrops[i] * fontSize > matrixCanvas.height && Math.random() > 0.95) {
-                    matrixDrops[i] = 0;
-                    glowDrops[i] = Math.random() > 0.9;
-                }
-                matrixDrops[i] += 0.5; // Slower fall speed
-            }
-        }
-
-        // Rain Effect
+        // Rain Effect - Immediate start without delays
         function createRain() {
             const rainContainer = document.getElementById('rain-bg');
-            const rainDropCount = 50; // Increased number of drops
+            if (!rainContainer) return;
+            
+            rainContainer.innerHTML = ''; // Очищаем контейнер
+            const rainDropCount = 35;
 
             for (let i = 0; i < rainDropCount; i++) {
                 const drop = document.createElement('div');
                 drop.className = 'rain-drop';
                 
                 drop.style.left = Math.random() * 100 + '%';
-                drop.style.height = Math.random() * 200 + 150 + 'px'; // Longer drops
-                drop.style.animationDelay = Math.random() * 6 + 's';
-                drop.style.animationDuration = Math.random() * 3 + 2 + 's'; // Faster animation
-                drop.style.boxShadow = '0 0 5px rgba(212, 175, 55, 0.5)'; // Added glow
+                drop.style.height = Math.random() * 200 + 100 + 'px';
+                
+                // Убираем задержки - анимация начинается сразу
+                drop.style.animationDelay = '0s';
+                drop.style.animationDuration = Math.random() * 3 + 4 + 's'; // 4-7 секунд
+                
+                // Устанавливаем случайное начальное положение
+                const randomStart = Math.random() * 100;
+                drop.style.transform = `translateY(-${randomStart}vh)`;
                 
                 rainContainer.appendChild(drop);
             }
         }
 
-        // Initialize animations
-        let matrixInterval = setInterval(drawMatrixRain, 30); // Smoother animation
+        // Запускаем дождь немедленно
+        createRain();
 
-        // Page load handling
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                document.body.classList.add('loaded');
-                document.getElementById('loading-screen').style.opacity = '0';
-                setTimeout(() => {
-                    document.getElementById('loading-screen').style.display = 'none';
-                    clearInterval(matrixInterval);
-                    createRain();
-                }, 1000);
-            }, 3000); // Longer loading animation
-        });
-
-        // Handle window resize
-        window.addEventListener('resize', () => {
-            matrixCanvas.width = window.innerWidth;
-            matrixCanvas.height = window.innerHeight;
+        // Дополнительный запуск после загрузки DOM
+        document.addEventListener('DOMContentLoaded', () => {
+            if (document.querySelectorAll('.rain-drop').length === 0) {
+                createRain();
+            }
         });
 
         // Sparkles for Buttons
